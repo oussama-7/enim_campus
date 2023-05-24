@@ -248,7 +248,7 @@ const Register = () => {
           </Link>} */}
         <div className="mb-3">
         {error && <p style={{color:"red",margin:"20px"}}>{error.message}</p>}
-        {successMessage && <><div  style={{margin:"20px"}} className="alert alert-info sm-gap big-zindex"  >{successMessage} <Link to="/login" >Login</Link> </div></>}
+        {successMessage && <><div  style={{margin:"20px"}} className="alert alert-info sm-gap big-zindex"  >{successMessage} <Link to="/login" onClick={()=>{dispatch({ type: "LOGIN_START" });}}>Login</Link> </div></>}
         </div>
         
         <p className="mt-5 mb-3 text-muted">&copy; Enim campus</p>
