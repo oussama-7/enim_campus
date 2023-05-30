@@ -1,26 +1,30 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
-import "./login.css";
-import { Link } from "react-router-dom";
+import { useState, useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import axios from 'axios';
+import './login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
     password: undefined,
   });
-  const [validationError,setValidationError]=useState({});
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get('redirect');
+  const redirect = redirectInUrl ? redirectInUrl : '/';
 
-  const  validation= (credentials)=>{
-      const errors={};
-      if(!credentials.username){
-        errors.username="username required"
-      }else if(!credentials.password){
-        errors.password="password required"
-      }
-      return errors;
+  const [validationError, setValidationError] = useState({});
+
+  const validation = (credentials) => {
+    const errors = {};
+    if (!credentials.username) {
+      errors.username = 'username required';
+    } else if (!credentials.password) {
+      errors.password = 'password required';
     }
+    return errors;
+  };
 
   const { loading, error, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -30,23 +34,26 @@ const Login = () => {
   };
 
   const handleClick = async (e) => {
-     e.preventDefault();
-     const val=validation(credentials);
-     setValidationError(val);
-   
-     if(!val.username && !val.password){
+    e.preventDefault();
+    const val = validation(credentials);
+    setValidationError(val);
 
-    
-    dispatch({ type: "LOGIN_START" });
-    try {
-      const res = await axios.post("/auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate("/");
-      
-    } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+    if (!val.username && !val.password) {
+      dispatch({ type: 'LOGIN_START' });
+      try {
+        const res = await axios.post('/auth/login', credentials);
+        dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
+
+        localStorage.setItem('state.user', JSON.stringify(res.data));
+        if (redirect === '/shipping') {
+          navigate('/shipping'); // Redirect to shipping page if the redirect is '/shipping'
+        } else {
+          navigate(-1); // Redirect to the previous page
+        }
+      } catch (err) {
+        dispatch({ type: 'LOGIN_FAILURE', payload: err.response.data });
+      }
     }
-  };
   };
 
   return (
@@ -72,7 +79,11 @@ const Login = () => {
           required
           autoFocus
         />
-        {validationError.username && <p style={{color:"red",fontSize:"13px"}}>{validationError.username}</p>}
+        {validationError.username && (
+          <p style={{ color: 'red', fontSize: '13px' }}>
+            {validationError.username}
+          </p>
+        )}
 
         <label htmlFor="password" className="sr-only">
           Password
@@ -85,16 +96,32 @@ const Login = () => {
           placeholder="Password"
           required
         />
-        {validationError.password && <p style={{color:"red",fontSize:"13px"}}>{validationError.password}</p>}
+        {validationError.password && (
+          <p style={{ color: 'red', fontSize: '13px' }}>
+            {validationError.password}
+          </p>
+        )}
 
         <div className="mb-3">
           <Link to="/forgotPassword">
-            <span onClick={()=>{dispatch({ type: "LOGIN_START" });}}>Forgot your password?</span>
+            <span
+              onClick={() => {
+                dispatch({ type: 'LOGIN_START' });
+              }}
+            >
+              Forgot your password?
+            </span>
           </Link>
         </div>
         <div className="mb-3">
           <Link to="/register">
-            <span onClick={()=>{dispatch({ type: "LOGIN_START" });}}>You don't have an account, try to register?</span>
+            <span
+              onClick={() => {
+                dispatch({ type: 'LOGIN_START' });
+              }}
+            >
+              You don't have an account, try to register?
+            </span>
           </Link>
         </div>
         <button
@@ -105,9 +132,11 @@ const Login = () => {
           Sign in
         </button>
         <div className="mb-3">
-        {error && <p style={{color:"red",margin:"20px"}}>{error.message}</p>}
+          {error && (
+            <p style={{ color: 'red', margin: '20px' }}>{error.message}</p>
+          )}
         </div>
-        
+
         <p className="mt-5 mb-3 text-muted">&copy; Enim campus</p>
       </form>
     </div>

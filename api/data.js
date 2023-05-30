@@ -1,0 +1,57 @@
+const data = {
+  products: [
+    {
+      // _id: '1',
+      name: 'Enim Hoodies',
+      slug: 'hoodies',
+      category: 'hoodies',
+      image: '/images/2.jpg', // 680x829
+      price: 300,
+      countInStock: 10,
+
+      rating: 4.5,
+      numReviews: 10,
+      description: 'Produit de tres haute qualité',
+    },
+    {
+      // _id: '2',
+      name: 'Enim Portecle',
+      slug: 'enim-shirt',
+      category: 'Shirts',
+      image: '/images/1.jpg',
+      price: 1000,
+      countInStock: 0,
+      brand: 'Adidas',
+      rating: 4.0,
+      numReviews: 10,
+      description: 'Produit de tres haute qualité',
+    },
+    {
+      //_id: '3',
+      name: 'Enim Jacket',
+      slug: 'enim-jacket',
+      category: 'jacket',
+      image: '/images/4.jpg',
+      price: 200,
+      countInStock: 15,
+      brand: 'Nike',
+      rating: 4.5,
+      numReviews: 14,
+      description: 'Produit de tres haute qualité',
+    },
+    {
+      // _id: '4',
+      name: 'Enim Cachcol',
+      slug: 'adidas-fit-pant',
+      category: 'Pants',
+      image: '/images/3.jpg',
+      price: 100,
+      countInStock: 5,
+      brand: 'Puma',
+      rating: 4.5,
+      numReviews: 10,
+      description: 'Produit de tres haute qualité',
+    },
+  ],
+};
+export default data;
