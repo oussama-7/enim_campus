@@ -1,5 +1,6 @@
 import React from 'react';
 import './StageForm.css';
+import { Link } from 'react-router-dom';
 
 
 const StageForm = () => {
@@ -90,9 +91,7 @@ const StageForm = () => {
                     required
                 />
 
-                <button type="submit">
-                    Créer la session
-                </button>
+                <Link to="/create"><span to="" className="btn btn-outline-light btn-lg download-button">Creer une Session</span></Link>
             </form>
         </div>
     );

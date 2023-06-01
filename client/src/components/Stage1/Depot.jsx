@@ -1,11 +1,19 @@
-import React from 'react';
+
 import './Depot.css';
+import React, { useState } from 'react';
 
 const Depot = () => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         // Logique de traitement de la soumission du formulaire ici
     };
+    const [selectedType, setSelectedType] = useState('');
+
+    const handleTypeChange = (event) => {
+        setSelectedType(event.target.value);
+    };
+
+
     return (
         <div>
             <div className="menu">
@@ -25,6 +33,14 @@ const Depot = () => {
             <div>
                 <h2>Déposer un document PDF</h2>
                 <form onSubmit={handleFormSubmit}>
+                    <label>Entrer le nom du document :</label>
+                    <input type="String" id="name" name="name" />
+                    <select id="type" name="type" value={selectedType} onChange={handleTypeChange} required>
+                        <option value="">Sélectionnez un type</option>
+                        <option value="remarque">Remarque</option>
+                        <option value="support">Support</option>
+                        <option value="travail à faire">Travail à faire</option>
+                    </select>
                     <label htmlFor="pdfFile">Sélectionnez un fichier PDF :</label>
                     <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" />
 
