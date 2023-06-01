@@ -91,7 +91,7 @@ const StageForm = () => {
                     required
                 />
 
-                <Link to="/create"><span to="" className="btn btn-outline-light btn-lg download-button">Creer une Session</span></Link>
+                <Link to="/Depot"><span to="" className="btn btn-outline-light btn-lg download-button">Creer une Session</span></Link>
             </form>
         </div>
     );
