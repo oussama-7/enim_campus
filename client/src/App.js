@@ -23,6 +23,7 @@ import ProductEditScreen from './pages/shop/ProductEditScreen';
 import Stage1 from './components/Stage1/Stage1';
 import StageForm from './components/Stage1/StageForm';
 import Pin from './components/Stage1/Pin';
+import Depot from './components/Stage1/Depot';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/Stage1" element={<Stage1 />} />
         <Route path="/StageForm" element={<StageForm />} />
         <Route path="/Pin" element={<Pin />} />
+        <Route path="/Depot" element={<Depot />} />
         <Route path="/product/:slug" element={<ProductScreen />} />
         <Route path="/cart" element={<CartScreen />} />
         <Route path="/search" element={<Searchscreen />} />
