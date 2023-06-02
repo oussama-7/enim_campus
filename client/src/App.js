@@ -5,7 +5,6 @@ import Home from './pages/Home/Home';
 import Register from './pages/Register/Register';
 import Reset from './pages/Reset/Reset';
 import Profile from './components/Profile/Profile';
-import { AuthContext } from './context/AuthContext';
 import HomeScreen from './pages/shop/HomeScreen';
 import CartScreen from './pages/shop/CartScreen';
 import ProductScreen from './pages/shop/ProductScreen';
@@ -20,6 +19,7 @@ import DashboardScreen from './pages/shop/DashboardScreen';
 import AdminRoute from './pages/shop/AdminRoute';
 import ProductListScreen from './pages/shop/ProductListScreen';
 import ProductEditScreen from './pages/shop/ProductEditScreen';
+import OrderListScreen from './pages/shop/OrderListScreen';
 
 function App() {
   return (
@@ -62,11 +62,37 @@ function App() {
           }
         ></Route>
         {/* Admin Routes */}
-        <Route path="/admin/dashboard" element={<DashboardScreen />}></Route>
-        <Route path="/admin/products" element={<ProductListScreen />}></Route>
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminRoute>
+              <DashboardScreen />
+            </AdminRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/orders"
+          element={
+            <AdminRoute>
+              <OrderListScreen />
+            </AdminRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/products"
+          element={
+            <AdminRoute>
+              <ProductListScreen />
+            </AdminRoute>
+          }
+        ></Route>
         <Route
           path="/admin/product/:id"
-          element={<ProductEditScreen />}
+          element={
+            <AdminRoute>
+              <ProductEditScreen />
+            </AdminRoute>
+          }
         ></Route>
       </Routes>
     </BrowserRouter>

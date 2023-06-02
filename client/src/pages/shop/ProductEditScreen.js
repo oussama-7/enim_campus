@@ -90,6 +90,7 @@ export default function ProductEditScreen() {
     e.preventDefault();
     try {
       dispatch({ type: 'UPDATE_REQUEST' });
+      const token = localStorage.getItem('access_token');
       await axios.put(
         `http://localhost:8800/api/products/${productId}`,
         {
@@ -101,6 +102,11 @@ export default function ProductEditScreen() {
           category,
           countInStock,
           description,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
         // {
         //   headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -114,6 +120,31 @@ export default function ProductEditScreen() {
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: 'UPDATE_FAIL' });
+    }
+  };
+
+  const uploadFileHandler = async (e, forImages) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append('file', file);
+    try {
+      dispatch({ type: 'UPLOAD_REQUEST' });
+      const { data } = await axios.post(
+        'http://localhost:8800/api/upload',
+        bodyFormData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            //   authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+      dispatch({ type: 'UPLOAD_SUCCESS' });
+      toast.success('Image uploaded successfully. click Update to apply it');
+      setImage(data.secure_url);
+    } catch (err) {
+      toast.error(getError(err));
+      dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
     }
   };
   return (
@@ -161,7 +192,12 @@ export default function ProductEditScreen() {
               required
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="imageFile">
+            <Form.Label>Upload Image</Form.Label>
+            <Form.Control type="file" onChange={uploadFileHandler} />
 
+            {loadingUpload && <LoadingBox></LoadingBox>}
+          </Form.Group>
           <Form.Group className="mb-3" controlId="category">
             <Form.Label>Category</Form.Label>
             <Form.Control

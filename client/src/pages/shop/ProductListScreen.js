@@ -77,8 +77,14 @@ export default function ProductListScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem('access_token');
         const { data } = await axios.get(
-          `http://localhost:8800/api/products/admin?page=${page}`
+          `http://localhost:8800/api/products/admin?page=${page}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
@@ -90,18 +96,26 @@ export default function ProductListScreen() {
     } else {
       fetchData();
     }
+    if (successDelete) {
+      dispatch({ type: 'DELETE_RESET' });
+    } else {
+      fetchData();
+    }
   }, [page, successDelete]);
 
   const createHandler = async () => {
     if (window.confirm('Are you sure to create?')) {
       try {
         dispatch({ type: 'CREATE_REQUEST' });
+        const token = localStorage.getItem('access_token');
         const { data } = await axios.post(
           'http://localhost:8800/api/products',
-          {}
-          //   {
-          //     headers: { Authorization: `Bearer ${user.token}` },
-          //   }
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         toast.success('product created successfully');
         dispatch({ type: 'CREATE_SUCCESS' });
@@ -114,6 +128,30 @@ export default function ProductListScreen() {
       }
     }
   };
+
+  const deleteHandler = async (product) => {
+    const token = localStorage.getItem('access_token');
+    if (window.confirm('Are you sure to delete?')) {
+      try {
+        await axios.delete(
+          `http://localhost:8800/api/products/${product._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        toast.success('product deleted successfully');
+        dispatch({ type: 'DELETE_SUCCESS' });
+      } catch (err) {
+        toast.error(getError(error));
+        dispatch({
+          type: 'DELETE_FAIL',
+        });
+      }
+    }
+  };
+
   return (
     <div>
       <Nav />
@@ -130,6 +168,7 @@ export default function ProductListScreen() {
         </Col>
       </Row>
       {loadingCreate && <LoadingBox></LoadingBox>}
+      {loadingDelete && <LoadingBox></LoadingBox>}
 
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -161,6 +200,14 @@ export default function ProductListScreen() {
                       onClick={() => navigate(`/admin/product/${product._id}`)}
                     >
                       Edit
+                    </Button>
+                    &nbsp;
+                    <Button
+                      type="button"
+                      variant="light"
+                      onClick={() => deleteHandler(product)}
+                    >
+                      Delete
                     </Button>
                   </td>
                 </tr>

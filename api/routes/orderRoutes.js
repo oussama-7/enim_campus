@@ -3,10 +3,14 @@ import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
 import User from '../models/User.js';
 import Product from '../models/productModel.js';
+import { verifyAdmin, verifyToken, verifyUser } from '../utils/verifyToken.js';
 
 const orderRouter = express.Router();
+
 orderRouter.get(
   '/',
+  verifyToken,
+  verifyAdmin,
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.find({});
     res.send(orders);
@@ -15,6 +19,7 @@ orderRouter.get(
 
 orderRouter.post(
   '/',
+  verifyToken,
   expressAsyncHandler(async (req, res) => {
     const newOrder = new Order({
       orderItems: req.body.orderItems.map((x) => ({ ...x, product: x._id })),
@@ -24,7 +29,7 @@ orderRouter.post(
       shippingPrice: req.body.shippingPrice,
       taxPrice: req.body.taxPrice,
       totalPrice: req.body.totalPrice,
-      // user: req.body._id,
+      // user: req.user._id,
     });
 
     const order = await newOrder.save();
@@ -34,7 +39,8 @@ orderRouter.post(
 
 orderRouter.get(
   '/summary',
-
+  verifyToken,
+  verifyAdmin,
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.aggregate([
       {
@@ -78,6 +84,7 @@ orderRouter.get(
 
 orderRouter.get(
   '/mine',
+  verifyToken,
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.find({ user: req.body._id });
     res.send(orders);
@@ -97,7 +104,24 @@ orderRouter.get(
 );
 
 orderRouter.put(
+  '/:id/deliver',
+  verifyToken,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      order.isDelivered = true;
+      order.deliveredAt = Date.now();
+      await order.save();
+      res.send({ message: 'Order Delivered' });
+    } else {
+      res.status(404).send({ message: 'Order Not Found' });
+    }
+  })
+);
+
+orderRouter.put(
   '/:id/pay',
+  verifyToken,
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
@@ -111,6 +135,21 @@ orderRouter.put(
       };
       const updatedOrder = await order.save();
       res.send({ message: 'Order Paid', order: updatedOrder });
+    } else {
+      res.status(404).send({ message: 'Order Not Found' });
+    }
+  })
+);
+
+orderRouter.delete(
+  '/:id',
+  verifyToken,
+  verifyAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      await order.deleteOne();
+      res.send({ message: 'Order Deleted' });
     } else {
       res.status(404).send({ message: 'Order Not Found' });
     }

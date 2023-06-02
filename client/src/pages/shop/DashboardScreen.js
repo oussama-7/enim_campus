@@ -35,8 +35,14 @@ export default function DashboardScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem('access_token');
         const { data } = await axios.get(
-          'http://localhost:8800/api/orders/summary'
+          'http://localhost:8800/api/orders/summary',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {

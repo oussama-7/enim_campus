@@ -11,6 +11,7 @@ import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import bodyParser from 'body-parser';
+import uploadRouter from './routes/uploadRoutes.js';
 
 import {
   resetPassword,
@@ -51,6 +52,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth', authRoute);
 app.use('/api/users', usersRoute);
+app.use('/api/upload', uploadRouter);
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
