@@ -1,16 +1,16 @@
 import mongoose from 'mongoose';
 
 const sessionSchema = new mongoose.Schema({
-    nomProfesseur: { type: String, required: true },
-    specialiteProfesseur: { type: String, required: true },
-    EmailProfesseur: { type: String, required: true },
-    nomEtudiant: { type: String, required: true },
-    specialiteEtudiant: { type: String, required: true },
-    niveau: { type: String, required: true },
-    EmailEtudiants: { type: String, required: true },
-    sujetStage: { type: String, required: true },
-    nomEntreprise: { type: String, required: true },
-    codePin: { type: String, required: true },
+    nomProfesseur: { type: String },
+    specialiteProfesseur: { type: String },
+    EmailProfesseur: { type: String },
+    nomEtudiant: { type: String },
+    specialiteEtudiant: { type: String },
+    niveau: { type: String },
+    EmailEtudiants: { type: String },
+    sujetStage: { type: String },
+    nomEntreprise: { type: String },
+    codePin: { type: String, unique: true },
 });
 
 const Session = mongoose.model('Session', sessionSchema);

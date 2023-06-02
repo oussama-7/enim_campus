@@ -2,19 +2,19 @@ import mongoose from 'mongoose';
 
 const DepotShema = new mongoose.Schema(
     {
-        name: { type: String, required: true, unique: true },
+        name: { type: String, unique: true },
         type: {
             type: String,
             enum: ['support', 'travail à faire'],
-            required: true,
             unique: true
-        }
+        },
+        document: { type: String },
     },
     {
         timestamps: true,
     }
 );
 
-const Product = mongoose.model('Product', productShema);
+const Depot = mongoose.model('Depot', DepotShema);
 
 export default Depot;

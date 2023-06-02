@@ -11,6 +11,8 @@ import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import bodyParser from 'body-parser';
+import sessionsRoute from './routes/CreateSessions.js';
+import depotsRoute from './routes/Depots.js'
 
 import {
   resetPassword,
@@ -41,6 +43,8 @@ app.get('/api/keys/paypal', (req, res) => {
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/api/sessions', sessionsRoute);
+app.use('/api/Depots', depotsRoute);
 app.use(bodyParser.json());
 app.use(
   cors({
