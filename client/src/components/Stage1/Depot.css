@@ -1,0 +1,45 @@
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #146C94;
+    height: 80px;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.dropzone {
+    border: 3px dashed #19A7CE;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 50px auto;
+    width: 80%;
+    text-align: center;
+    font-size: 24px;
+    color: #146C94;
+}
+
+.dropzone:hover {
+    background-color: #19A7CE;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*.file-form {
+    /* Ajoutez les styles supplémentaires pour le formulaire de dépôt de document */
+
+
+/*.comments {
+     Ajoutez les styles supplémentaires pour les commentaires */
