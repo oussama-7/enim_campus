@@ -86,7 +86,7 @@ const Navi = () => {
                 )}
                 {user !== null ? (
                   <NavDropdown title={user.username} id="basic-nav-dropdown">
-                    <LinkContainer to="/profile">
+                    <LinkContainer to="/profile2">
                       <NavDropdown.Item>User Profile</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/orderhistory">

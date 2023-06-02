@@ -11,8 +11,12 @@ import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import bodyParser from 'body-parser';
+//<<<<<<< HEAD
 import sessionsRoute from './routes/CreateSessions.js';
 import depotsRoute from './routes/Depots.js'
+//=======
+import uploadRouter from './routes/uploadRoutes.js';
+//>>>>>>> e2168fe072179042a532efc2673b822f4d41ab40
 
 import {
   resetPassword,
@@ -55,6 +59,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth', authRoute);
 app.use('/api/users', usersRoute);
+app.use('/api/upload', uploadRouter);
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);

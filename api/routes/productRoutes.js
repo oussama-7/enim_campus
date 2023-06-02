@@ -1,7 +1,7 @@
 import express from 'express';
 import Product from '../models/productModel.js';
 import expressAsyncHandler from 'express-async-handler';
-import { verifyAdmin } from '../utils/verifyToken.js';
+import { verifyAdmin, verifyToken } from '../utils/verifyToken.js';
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
@@ -11,7 +11,8 @@ productRouter.get('/', async (req, res) => {
 
 productRouter.post(
   '/',
-  // verifyAdmin,
+  verifyToken,
+  verifyAdmin,
   expressAsyncHandler(async (req, res) => {
     const newProduct = new Product({
       name: 'sample name ' + Date.now(),
@@ -31,6 +32,8 @@ productRouter.post(
 
 productRouter.put(
   '/:id',
+  verifyToken,
+  verifyToken,
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
@@ -50,10 +53,25 @@ productRouter.put(
   })
 );
 
+productRouter.delete(
+  '/:id',
+  verifyToken,
+  verifyAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      await product.deleteOne();
+      res.send({ message: 'Product Deleted' });
+    } else {
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+  })
+);
 const PAGE_SIZE = 5;
 productRouter.get(
   '/admin',
-
+  verifyToken,
+  verifyAdmin,
   expressAsyncHandler(async (req, res) => {
     const { query } = req;
     const page = query.page || 1;
