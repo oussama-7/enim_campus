@@ -24,6 +24,8 @@ import StageForm from './components/Stage1/StageForm';
 import Pin from './components/Stage1/Pin';
 import Depot from './components/Stage1/Depot';
 import OrderListScreen from './pages/shop/OrderListScreen';
+import Chat from './components/Stage1/Chat';
+import Avancement from './components/Stage1/Avancement';
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
         <Route path="/StageForm" element={<StageForm />} />
         <Route path="/Pin" element={<Pin />} />
         <Route path="/Depot" element={<Depot />} />
+        <Route path="/Chat" element={<Chat />} />
+        <Route path="/Avancement" element={<Avancement />} />
         <Route path="/product/:slug" element={<ProductScreen />} />
         <Route path="/cart" element={<CartScreen />} />
         <Route path="/search" element={<Searchscreen />} />

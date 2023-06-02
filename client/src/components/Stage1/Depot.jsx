@@ -18,8 +18,8 @@ const Depot = () => {
         <div>
             <div className="menu">
                 <div>
-                    <a href="#">Avancement</a>
-                    <a href="#">Chat</a>
+                    <a href="/Avancement">Avancement</a>
+                    <a href="/chat">Chat</a>
                     <a href="#">Travail à faire</a>
                     <a href="#">Infos générales</a>
                 </div>
