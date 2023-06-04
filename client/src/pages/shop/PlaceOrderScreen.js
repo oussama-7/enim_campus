@@ -48,7 +48,8 @@ export default function PlaceOrderScreen() {
   const placeOrderHandler = async () => {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
-      const token = localStorage.getItem('access_token');
+      // const token = localStorage.getItem('access_token');
+      
       const { data } = await axios.post(
         'http://localhost:8800/api/orders',
         {
@@ -60,11 +61,15 @@ export default function PlaceOrderScreen() {
           taxPrice: cart.taxPrice,
           totalPrice: cart.totalPrice,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+    {
+      withCredentials : true,
+    }
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        //   withCredentials : true,
+        // }
       );
       ctxDispatch({ type: 'CART_CLEAR' });
       dispatch({ type: 'CREATE_SUCCESS' });

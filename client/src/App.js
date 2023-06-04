@@ -51,10 +51,10 @@ function App() {
         <Route path="/Chat" element={<Chat />} />
         <Route path="/Avancement" element={<Avancement />} />
         <Route path="/product/:slug" element={<ProductScreen />} />
-        <Route path="/cart" element={<CartScreen />} />
+        <Route path="/cart" element={<ProtectedRoute><CartScreen /></ProtectedRoute>} />
         <Route path="/search" element={<Searchscreen />} />
         <Route path="/homescreen" element={<HomeScreen />} />
-        <Route path="/shipping" element={<ShippingAddressScreen />} />
+        <Route path="/shipping" element={ <ProtectedRoute><ShippingAddressScreen /></ProtectedRoute>} />
         <Route path="/payment" element={<PaymentMethodScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
         <Route

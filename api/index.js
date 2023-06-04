@@ -11,12 +11,11 @@ import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import bodyParser from 'body-parser';
-//<<<<<<< HEAD
+
 import sessionsRoute from './routes/CreateSessions.js';
 import depotsRoute from './routes/Depots.js'
-//=======
+
 import uploadRouter from './routes/uploadRoutes.js';
-//>>>>>>> e2168fe072179042a532efc2673b822f4d41ab40
 
 import {
   resetPassword,
@@ -40,6 +39,12 @@ mongoose.connection.on('disconnected', () => {
 });
 //middlewares
 
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 app.get('/api/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 });
@@ -50,11 +55,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/sessions', sessionsRoute);
 app.use('/api/Depots', depotsRoute);
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
 app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth', authRoute);

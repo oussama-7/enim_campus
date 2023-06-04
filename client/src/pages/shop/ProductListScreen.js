@@ -77,13 +77,11 @@ export default function ProductListScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('access_token');
+        
         const { data } = await axios.get(
           `http://localhost:8800/api/products/admin?page=${page}`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            withCredentials : true,
           }
         );
 

@@ -49,13 +49,13 @@ export default function OrderListScreen() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem('access_token');
+      
       try {
         dispatch({ type: 'FETCH_REQUEST' });
         const { data } = await axios.get(`http://localhost:8800/api/orders`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+         
+            withCredentials : true,
+          
         });
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {
@@ -78,9 +78,8 @@ export default function OrderListScreen() {
         dispatch({ type: 'DELETE_REQUEST' });
         const token = localStorage.getItem('access_token');
         await axios.delete(`http://localhost:8800/api/orders/${order._id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          withCredentials : true,
+          
         });
         toast.success('order deleted successfully');
         dispatch({ type: 'DELETE_SUCCESS' });

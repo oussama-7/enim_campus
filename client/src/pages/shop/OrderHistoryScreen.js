@@ -36,14 +36,12 @@ export default function OrderHistoryScreen() {
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
-      const token = localStorage.getItem('access_token');
+      
       try {
         const { data } = await axios.get(
           `http://localhost:8800/api/orders/mine`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            withCredentials : true,
           }
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });

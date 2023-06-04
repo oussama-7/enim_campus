@@ -98,14 +98,12 @@ export default function OrderScreen() {
     return actions.order.capture().then(async function (details) {
       try {
         dispatch({ type: 'PAY_REQUEST' });
-        const token = localStorage.getItem('access_token');
+        
         const { data } = await axios.put(
           `http://localhost:8800/api/orders/${order._id}/pay`,
           details,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            withCredentials : true,
           }
         );
         dispatch({ type: 'PAY_SUCCESS', payload: data });
@@ -151,15 +149,15 @@ export default function OrderScreen() {
       }
       dispatch({ type: 'DELIVER_RESET' });
     } else {
-      const token = localStorage.getItem('access_token');
+     
       const loadPaypalScript = async () => {
         const { data: clientId } = await axios.get(
           `http://localhost:8800/api/keys/paypal`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+            withCredentials : true,
+          },
+          // 
+          
         );
         paypalDispatch({
           type: 'resetOptions ',
@@ -185,15 +183,13 @@ export default function OrderScreen() {
   async function deliverOrderHandler() {
     try {
       dispatch({ type: 'DELIVER_REQUEST' });
-      const token = localStorage.getItem('access_token');
+      
       const { data } = await axios.put(
         `http://localhost:8800/api/orders/${order._id}/deliver`,
         {},
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+          withCredentials : true,
+        },
       );
       dispatch({ type: 'DELIVER_SUCCESS', payload: data });
       toast.success('Order is delivered');

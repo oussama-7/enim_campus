@@ -90,7 +90,7 @@ export default function ProductEditScreen() {
     e.preventDefault();
     try {
       dispatch({ type: 'UPDATE_REQUEST' });
-      const token = localStorage.getItem('access_token');
+      
       await axios.put(
         `http://localhost:8800/api/products/${productId}`,
         {
@@ -104,9 +104,7 @@ export default function ProductEditScreen() {
           description,
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          withCredentials : true,
         }
         // {
         //   headers: { Authorization: `Bearer ${userInfo.token}` },

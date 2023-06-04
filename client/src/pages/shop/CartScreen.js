@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import MessageBox from './MessageBox';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
@@ -47,6 +47,7 @@ export default function CartScreen() {
   };
 
   const checkoutHandler = () => {
+    
     navigate('/login?redirect=/shipping');
   };
 
