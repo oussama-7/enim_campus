@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import "./login.css";
@@ -42,13 +42,16 @@ const location = useLocation();
       const res = await axios.post("/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       localStorage.setItem('state.user', JSON.stringify(res.data));
+      sessionStorage.setItem('previousPath', location.pathname);
       if (location.state?.from){
            navigate (location.state.from);
       } else{
         navigate("/");
         
       }
-      console.log({user});
+     
+    
+      
       
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });

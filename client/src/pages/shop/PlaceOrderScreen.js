@@ -49,7 +49,8 @@ export default function PlaceOrderScreen() {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
       // const token = localStorage.getItem('access_token');
-      
+      console.log(cart);
+
       const { data } = await axios.post(
         'http://localhost:8800/api/orders',
         {

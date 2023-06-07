@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NavDropdown, Badge, Button } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
 import { Store } from './Store';
@@ -12,9 +12,11 @@ import axios from 'axios';
 import { getError } from '../../utils';
 import { toast } from 'react-toastify';
 import SearchBox from './SearchBox';
+import './shop.css';  
 
 const Navi = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, dispatch } = useContext(AuthContext);
   const { state } = useContext(Store);
   const { cart } = state;
@@ -26,8 +28,10 @@ const Navi = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('paymentMethod');
     localStorage.removeItem('shippingAddress');
+    
+  
   };
-
+   
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -44,6 +48,7 @@ const Navi = () => {
     fetchCategories();
   }, []);
   return (
+    
     <div
       className={
         sidebarIsOpen
@@ -66,7 +71,7 @@ const Navi = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <SearchBox />
-              <Nav className="me-auto w-100 justify-content-end">
+              <Nav className="me-auto w-100% justify-content-end">
                 {user ? (
                   <>
                     <Link to="/cart" className="nav-link">
@@ -86,7 +91,7 @@ const Navi = () => {
                 )}
                 {user !== null ? (
                   <NavDropdown title={user.username} id="basic-nav-dropdown">
-                    <LinkContainer to="/profile2">
+                    <LinkContainer to="/profile">
                       <NavDropdown.Item>User Profile</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/orderhistory">
@@ -102,11 +107,14 @@ const Navi = () => {
                     </Link>
                   </NavDropdown>
                 ) : (
-                  <Link className="nav-link" to="/login">
+                  <Link className="nav-link" to={{
+                    pathname: '/login',
+                    state: { from: location.pathname },
+                  }}>
                     Sign In
                   </Link>
                 )}
-                {user !== null && user.isAdmin !== null && (
+                {user !== null && user.isAdmin && (
                   <NavDropdown title="Admin" id="admin-nav-dropdown">
                     <LinkContainer to="/admin/dashboard">
                       <NavDropdown.Item>Dashboard</NavDropdown.Item>
@@ -121,13 +129,8 @@ const Navi = () => {
                       <NavDropdown.Item>Users</NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>
-                )}
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </header>
-      <div
+                )},
+                 <div
         className={
           sidebarIsOpen
             ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
@@ -150,6 +153,13 @@ const Navi = () => {
           ))}
         </Nav>
       </div>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+       
+      </header>
+      
     </div>
   );
 };

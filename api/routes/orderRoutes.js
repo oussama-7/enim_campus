@@ -20,7 +20,9 @@ orderRouter.get(
 orderRouter.post(
   '/',
   verifyToken,
+  
   expressAsyncHandler(async (req, res) => {
+    
     const newOrder = new Order({
       orderItems: req.body.orderItems.map((x) => ({ ...x, product: x._id })),
       shippingAddress: req.body.shippingAddress,
@@ -29,7 +31,7 @@ orderRouter.post(
       shippingPrice: req.body.shippingPrice,
       taxPrice: req.body.taxPrice,
       totalPrice: req.body.totalPrice,
-      // user: req.user._id,
+      user: req.user._id,
     });
 
     const order = await newOrder.save();
@@ -86,7 +88,7 @@ orderRouter.get(
   '/mine',
   verifyToken,
   expressAsyncHandler(async (req, res) => {
-    const orders = await Order.find({ user: req.body._id });
+    const orders = await Order.find({ user: req.user._id });
     res.send(orders);
   })
 );

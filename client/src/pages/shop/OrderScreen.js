@@ -319,7 +319,7 @@ export default function OrderScreen() {
                     {loadingPay && <LoadingBox></LoadingBox>}
                   </ListGroupItem>
                 )}
-                {order.isPaid && !order.isDelivered && (
+                {order.isPaid && !order.isDelivered && user.isAdmin && (
                   <ListGroup.Item>
                     {loadingDeliver && <LoadingBox></LoadingBox>}
                     <div className="d-grid">
