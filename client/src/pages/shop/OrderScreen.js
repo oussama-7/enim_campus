@@ -93,6 +93,29 @@ export default function OrderScreen() {
         return orderID;
       });
   }
+  const handleALaLivraisonPayment = async () => {
+    try {
+      dispatch({ type: 'PAY_REQUEST' });
+
+      
+      const { data } = await axios.put(
+        `http://localhost:8800/api/orders/${order._id}/pay`,
+        {
+          paymentMethod: 'a la livraison',
+          
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      dispatch({ type: 'PAY_SUCCESS', payload: data });
+      toast.success('Order is paid');
+    } catch (err) {
+      dispatch({ type: 'PAY_FAIL', payload: getError(err) });
+      toast.error(getError(err));
+    }
+  };
 
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
@@ -119,6 +142,7 @@ export default function OrderScreen() {
   }
 
   useEffect(() => {
+    
     const fetchOrder = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
@@ -218,6 +242,17 @@ export default function OrderScreen() {
                 <strong>Name:</strong> {order.shippingAddress.fullName} <br />
                 <strong>Address: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
+                &nbsp;
+                {order.shippingAddress.location &&
+                  order.shippingAddress.location.lat && (
+                    <a
+                      target="_new"
+                      href={`https://maps.google.com?q=${order.shippingAddress.location.lat},${order.shippingAddress.location.lng}`}
+                    >
+                      Show On Map
+                    </a>
+                  )}
+                  
               </Card.Text>
               {order.isDelivered ? (
                 <MessageBox variant="success">
@@ -307,7 +342,7 @@ export default function OrderScreen() {
                   <ListGroupItem>
                     {isPending ? (
                       <LoadingBox />
-                    ) : (
+                    ) : order.paymentMethod === 'paypal' ? (
                       <div>
                         <PayPalButtons
                           createOrder={createOrder}
@@ -315,6 +350,12 @@ export default function OrderScreen() {
                           onError={onError}
                         ></PayPalButtons>
                       </div>
+                    ):(
+                      <div className="d-grid">
+                <Button type="button" onClick={handleALaLivraisonPayment}>
+                  Pay
+                </Button>
+              </div>
                     )}
                     {loadingPay && <LoadingBox></LoadingBox>}
                   </ListGroupItem>

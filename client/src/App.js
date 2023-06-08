@@ -19,6 +19,7 @@ import DashboardScreen from './pages/shop/DashboardScreen';
 import AdminRoute from './pages/shop/AdminRoute';
 import ProductListScreen from './pages/shop/ProductListScreen';
 import ProductEditScreen from './pages/shop/ProductEditScreen';
+import UserListScreen from './pages/shop/UserListScreen';
 import Stage1 from './components/Stage1/Stage1';
 import StageForm from './components/Stage1/StageForm';
 import Pin from './components/Stage1/Pin';
@@ -26,6 +27,7 @@ import Depot from './components/Stage1/Depot';
 import OrderListScreen from './pages/shop/OrderListScreen';
 import Chat from './components/Stage1/Chat';
 import Avancement from './components/Stage1/Avancement';
+import MapScreen from './pages/shop/MapScreen';
 
 function App() {
   return (
@@ -44,6 +46,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/map"
+          element={
+            <ProtectedRoute>
+              <MapScreen />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/Stage1" element={<Stage1 />} />
         <Route path="/StageForm" element={<StageForm />} />
         <Route path="/Pin" element={<Pin />} />
@@ -57,6 +67,9 @@ function App() {
         <Route path="/shipping" element={ <ProtectedRoute><ShippingAddressScreen /></ProtectedRoute>} />
         <Route path="/payment" element={<PaymentMethodScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
+       
+
+        
         <Route
           path="/order/:id"
           element={
@@ -91,10 +104,18 @@ function App() {
           }
         ></Route>
         <Route
-          path="/admin/products"
+          path="/admin/orders"
           element={
             <AdminRoute>
-              <ProductListScreen />
+              <OrderListScreen />
+            </AdminRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/users"
+          element={
+            <AdminRoute>
+              <UserListScreen />
             </AdminRoute>
           }
         ></Route>

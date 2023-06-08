@@ -11,6 +11,7 @@ export default function ShippingAdressScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
+    fullBox,
     user,
     cart: { shippingAddress },
   } = state;
@@ -21,11 +22,6 @@ export default function ShippingAdressScreen() {
     shippingAddress.postalCode || ''
   );
 
-  // if (!user) {
-  //   navigate('/login'); // Redirect to the login page if the user is not logged in
-  // } else {
-  //   navigate('/shipping'); // Redirect to the shipping page if the user is logged in
-  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -36,6 +32,7 @@ export default function ShippingAdressScreen() {
         address,
         city,
         postalCode,
+        location : shippingAddress.location,
       },
     });
     localStorage.setItem(
@@ -45,10 +42,15 @@ export default function ShippingAdressScreen() {
         address,
         city,
         postalCode,
+        location : shippingAddress.location,
       })
     );
     navigate('/payment');
   };
+  useEffect(() => {
+    ctxDispatch({ type: 'SET_FULLBOX_OFF' });
+  }, [ctxDispatch, fullBox]);
+
   return (
     <div>
       <Nav />
@@ -91,6 +93,24 @@ export default function ShippingAdressScreen() {
               required
             />
           </Form.Group>
+          <div className="mb-3">
+            <Button
+              id="chooseOnMap"
+              type="button"
+              variant="light"
+              onClick={() => navigate('/map')}
+            >
+              Choose Location On Map
+            </Button>
+            {shippingAddress.location && shippingAddress.location.lat ? (
+              <div>
+                LAT: {shippingAddress.location.lat}
+                LNG:{shippingAddress.location.lng}
+              </div>
+            ) : (
+              <div>No location</div>
+            )}
+          </div>
 
           <div className="mb-3">
             <Button variant="light" type="submit">

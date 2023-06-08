@@ -19,7 +19,7 @@ const Navi = () => {
   const location = useLocation();
   const { user, dispatch } = useContext(AuthContext);
   const { state } = useContext(Store);
-  const { cart } = state;
+  const { fullBox ,cart } = state;
   const {
     cart: { cartItems },
   } = state;
@@ -50,11 +50,15 @@ const Navi = () => {
   return (
     
     <div
-      className={
-        sidebarIsOpen
+    className={
+      sidebarIsOpen
+        ? fullBox
           ? 'site-container active-cont d-flex flex-column full-box'
           : 'site-container active-cont d-flex flex-column'
-      }
+        : fullBox
+        ? 'site-container d-flex flex-column full-box'
+        : 'site-container d-flex flex-column'
+    }
     >
       <header>
         <Navbar bg="dark" variant="dark" expand="lg">

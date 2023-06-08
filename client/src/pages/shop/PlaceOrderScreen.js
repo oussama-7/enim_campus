@@ -16,6 +16,7 @@ import Nav from './Nav';
 
 const reducer = (state, action) => {
   switch (action.type) {
+    
     case 'CREATE_REQUEST':
       return { ...state, loading: true };
     case 'CREATE_SUCCESS':
@@ -65,12 +66,7 @@ export default function PlaceOrderScreen() {
     {
       withCredentials : true,
     }
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //   },
-        //   withCredentials : true,
-        // }
+  
       );
       ctxDispatch({ type: 'CART_CLEAR' });
       dispatch({ type: 'CREATE_SUCCESS' });
