@@ -54,99 +54,107 @@ export default function CartScreen() {
   return (
     <div>
       <Nav />
-        <Helmet>
-          <title>Carte d'Achat</title>
-        </Helmet>
-        <div className="cartscreen-container">
+      <Helmet>
+        <title>Carte d'Achat</title>
+      </Helmet>
+      <div className="cartscreen-container">
         <h1>Shopping Cart</h1>
-      <div  >
-        <div className="flex-components">
-          <div className="cart-container" >
-            <Col className="border-0" >
-              {cartItems.length === 0 ? (
-                <MessageBox>
-                  Cart is empty. <Link to="/homescreen">Go Shopping</Link>
-                </MessageBox>
-              ) : (
-                <ListGroup>
-                  {cartItems.map((item) => (
-                    <ListGroup.Item className="border-0 flex-columns" key={item._id}>
-                      <Row className="align-items-center">
-                        <Col >
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className=" border-0 img-fluid rounded img-thumbnail "
-                          ></img>{" "}
-                         <Link to={`/product/${item.slug}`}>
-                            <span className="item-name">{item.name}</span>
-                        </Link>
-                        </Col>
-                        <Col className="border-0" >
-                          <Button
-                            variant="light"
-                            onClick={() =>
-                              updateCartHandler(item, item.quantity - 1)
-                            }
-                            disabled={item.quantity === 1}
-                          >
-                            <i className="fas fa-minus-circle"></i>
-                          </Button>{" "}
-                          <span>{item.quantity}</span>
-                          {""}
-                          <Button
-                            variant="light"
-                            onClick={() =>
-                              updateCartHandler(item, item.quantity + 1)
-                            }
-                            disabled={item.quantity === item.countInStock}
-                          >
-                            <i className="fas fa-plus-circle"></i>
-                          </Button>
-                        </Col>
-                        <Col className="border-0" > {item.price}</Col>
-                        <Col className="border-0" >
-                          <Button
-                            onClick={() => removeItemHandler(item)}
-                            variant="light"
-                          >
-                            <i className="fas fa-trash"></i>
-                          </Button>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              )}
-            </Col>
-          </div>
-          <div className="subtotal-container">
-            <ListGroup>
-              <div className="summary">
-                <div>
-                  <h3 className="subtotal">
-                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
-                    items) : {""}
-                    <span className="total-price">{cartItems.reduce((a, c) => a + c.price * c.quantity, 0)} dh
-                    </span>
-                  </h3>
+        <div>
+          <div className="flex-components">
+            <div className="cart-container">
+              <Col className="border-0">
+                {cartItems.length === 0 ? (
+                  <MessageBox>
+                    Cart is empty. <Link to="/homescreen">Go Shopping</Link>
+                  </MessageBox>
+                ) : (
+                  <ListGroup>
+                    {cartItems.map((item) => (
+                      <ListGroup.Item
+                        className="border-0 flex-columns"
+                        key={item._id}
+                      >
+                        <Row className="align-items-center">
+                          <Col>
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className=" border-0 img-fluid rounded img-thumbnail "
+                            ></img>{" "}
+                            <Link to={`/product/${item.slug}`}>
+                              <span className="item-name">{item.name}</span>
+                            </Link>
+                          </Col>
+                          <Col className="border-0">
+                            <Button
+                              variant="light"
+                              onClick={() =>
+                                updateCartHandler(item, item.quantity - 1)
+                              }
+                              disabled={item.quantity === 1}
+                            >
+                              <i className="fas fa-minus-circle"></i>
+                            </Button>{" "}
+                            <span>{item.quantity}</span>
+                            {""}
+                            <Button
+                              variant="light"
+                              onClick={() =>
+                                updateCartHandler(item, item.quantity + 1)
+                              }
+                              disabled={item.quantity === item.countInStock}
+                            >
+                              <i className="fas fa-plus-circle"></i>
+                            </Button>
+                          </Col>
+                          <Col className="border-0"> {item.price}</Col>
+                          <Col className="border-0">
+                            <Button
+                              onClick={() => removeItemHandler(item)}
+                              variant="light"
+                            >
+                              <i className="fas fa-trash"></i>
+                            </Button>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                )}
+              </Col>
+            </div>
+            <div className="subtotal-container">
+              <ListGroup>
+                <div className="summary">
+                  <div>
+                    <h3 className="subtotal">
+                      Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
+                      items) : {""}
+                      <span className="total-price">
+                        {cartItems.reduce(
+                          (a, c) => a + c.price * c.quantity,
+                          0
+                        )}{" "}
+                        dh
+                      </span>
+                    </h3>
+                  </div>
+                  <div>
+                    <Button
+                      className="custom-btn"
+                      type="button"
+                      variant="primary"
+                      onClick={checkoutHandler}
+                      disabled={cartItems.length === 0}
+                    >
+                      Proceed to Checkout
+                    </Button>
+                  </div>
                 </div>
-                <div>
-                  <Button
-                    className="custom-btn"
-                    type="button"
-                    variant="primary"
-                    onClick={checkoutHandler}
-                    disabled={cartItems.length === 0}
-                  >
-                    Proceed to Checkout
-                  </Button>
-                </div>
-              </div>
-            </ListGroup>
+              </ListGroup>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
