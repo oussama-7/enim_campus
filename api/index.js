@@ -14,6 +14,7 @@ import bodyParser from 'body-parser';
 
 import sessionsRoute from './routes/CreateSessions.js';
 import depotsRoute from './routes/Depots.js'
+import eventsRoute from "./routes/events.js";
 
 import uploadRouter from './routes/uploadRoutes.js';
 
@@ -62,6 +63,7 @@ app.use('/api/Depots', depotsRoute);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
+app.use("/api/events", eventsRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/upload', uploadRouter);

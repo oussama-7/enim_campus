@@ -1,0 +1,72 @@
+.header-para {
+  background-color: #4169e1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.headerContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 20px 0px 100px 0px;
+}
+
+.headerContainer.listMode {
+  margin: 20px 0px 0px 0px;
+}
+
+.headerList {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.headerListItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerListItem.active {
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.headerDesc {
+  margin: 20px 0px;
+}
+
+.headerSearch {
+  display: flex;
+  gap: 10px;
+}
+
+.headerBtn {
+  padding: 10px 20px;
+  background-color: #0071c2;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: -4px 9px 59px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: -4px 9px 59px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -4px 9px 59px 0px rgba(0,0,0,0.75);
+}
+
+.headerBtn:hover {
+  background-color: #005ca8;
+}
+
+.signInBtn {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+.signInBtn:hover {
+  background-color: #d9d9d9;
+}

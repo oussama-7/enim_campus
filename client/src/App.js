@@ -28,12 +28,20 @@ import OrderListScreen from './pages/shop/OrderListScreen';
 import Chat from './components/Stage1/Chat';
 import Avancement from './components/Stage1/Avancement';
 import MapScreen from './pages/shop/MapScreen';
+import Dar from "./pages/dar/Dar";
+import Event from "./pages/event/Event";
+import List from "./pages/list/List";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+      
+      <Route path="/" element={<Home />} />
+        <Route path="/parascolaire" element={<Dar/>}/>
+        <Route path="/events" element={<List/>}/>
+        <Route path="/events/:id" element={<Event/>}/>
+        
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

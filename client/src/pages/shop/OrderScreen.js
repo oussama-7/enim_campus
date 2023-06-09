@@ -342,7 +342,7 @@ export default function OrderScreen() {
                   <ListGroupItem>
                     {isPending ? (
                       <LoadingBox />
-                    ) : order.paymentMethod === 'paypal' ? (
+                    ) : order.paymentMethod === 'PayPal' ? (
                       <div>
                         <PayPalButtons
                           createOrder={createOrder}
