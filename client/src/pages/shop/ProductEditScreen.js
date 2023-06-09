@@ -10,6 +10,8 @@ import LoadingBox from './LoadingBox';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
+import './shop.css';
+
 
 export default function ProductEditScreen() {
   const reducer = (state, action) => {
@@ -66,7 +68,10 @@ export default function ProductEditScreen() {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
         const { data } = await axios.get(
-          `http://localhost:8800/api/products/${productId}`
+          `http://localhost:8800/api/products/${productId}`,
+          {
+            withCredentials: true,
+          }
         );
         setName(data.name);
         setSlug(data.slug);
@@ -85,6 +90,8 @@ export default function ProductEditScreen() {
     };
     fetchData();
   }, [productId]);
+
+  
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -106,9 +113,7 @@ export default function ProductEditScreen() {
         {
           withCredentials : true,
         }
-        // {
-        //   headers: { Authorization: `Bearer ${userInfo.token}` },
-        // }
+       
       );
       dispatch({
         type: 'UPDATE_SUCCESS',
@@ -133,8 +138,10 @@ export default function ProductEditScreen() {
         {
           headers: {
             'Content-Type': 'multipart/form-data',
-            //   authorization: `Bearer ${userInfo.token}`,
+            withCredentials:true,
+           
           },
+         
         }
       );
       dispatch({ type: 'UPLOAD_SUCCESS' });

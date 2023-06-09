@@ -21,6 +21,7 @@ import LoadingBox from "./LoadingBox";
 import { getError } from "../../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import './shop.css';
 
 const reducer = (state, action) => {
   switch (action.type) {

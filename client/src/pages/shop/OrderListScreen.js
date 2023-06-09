@@ -8,6 +8,8 @@ import LoadingBox from './LoadingBox';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import './shop.css';
+
 
 const reducer = (state, action) => {
   switch (action.type) {

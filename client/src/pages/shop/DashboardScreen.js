@@ -8,6 +8,7 @@ import Nav from './Nav';
 import { getError } from '../../utils';
 import LoadingBox from './LoadingBox';
 import MessageBox from './MessageBox';
+import { AuthContext } from '../../context/AuthContext';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -32,16 +33,17 @@ export default function DashboardScreen() {
     summary: { users: [], orders: [], dailyOrders: [] },
   });
 
+  const {user} = useContext(AuthContext)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
+       
         const { data } = await axios.get(
           'http://localhost:8800/api/orders/summary',
           {
-            withCredentials : true,
+            withCredentials: true,
           }
-          
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {
@@ -81,8 +83,8 @@ export default function DashboardScreen() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {summary.orders && summary.users[0]
-                      ? summary.orders[0].numOrders
+                  {summary.orders && summary.orders.numOrders !== undefined
+                      ? summary.orders.numOrders
                       : 0}
                   </Card.Title>
                   <Card.Text> Orders</Card.Text>
@@ -93,8 +95,9 @@ export default function DashboardScreen() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {summary.orders && summary.users[0]
-                      ? summary.orders[0].totalSales.toFixed(2)
+                  
+                  {summary.orders && summary.orders.totalSales !== undefined
+                      ? summary.orders.totalSales.toFixed(2)
                       : 0}{' '}
                     DH
                   </Card.Title>

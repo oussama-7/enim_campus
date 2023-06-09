@@ -1,4 +1,4 @@
-/* .menu {
+.menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,7 +35,7 @@
     background-color: #19A7CE;
     color: #fff;
     cursor: pointer;
-} */
+}
 
 /*.file-form {
     /* Ajoutez les styles supplémentaires pour le formulaire de dépôt de document */

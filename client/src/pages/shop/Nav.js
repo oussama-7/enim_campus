@@ -91,7 +91,7 @@ const Navi = () => {
                     </Link>
                   </>
                 ) : (
-                  <Link to="/cart" className="nav-link">
+                  <Link to="/cart"  className="nav-link">
                     Cart
                   </Link>
                 )}

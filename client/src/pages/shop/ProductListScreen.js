@@ -9,6 +9,8 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { getError } from '../../utils';
 import { AuthContext } from '../../context/AuthContext';
+import './shop.css';
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -110,9 +112,7 @@ export default function ProductListScreen() {
           'http://localhost:8800/api/products',
           {},
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            withCredentials: true,
           }
         );
         toast.success('product created successfully');
@@ -127,6 +127,8 @@ export default function ProductListScreen() {
     }
   };
 
+  
+
   const deleteHandler = async (product) => {
     const token = localStorage.getItem('access_token');
     if (window.confirm('Are you sure to delete?')) {
@@ -134,9 +136,7 @@ export default function ProductListScreen() {
         await axios.delete(
           `http://localhost:8800/api/products/${product._id}`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+           withCredentials: true,
           }
         );
         toast.success('product deleted successfully');
