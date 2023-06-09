@@ -80,9 +80,19 @@ export default function MapScreen() {
   const onMarkerLoad = (marker) => {
     markerRef.current = marker;
   };
+  const onDragEnd = () => {
+    setLocation({
+      lat: markerRef.current.getPosition().lat(),
+      lng: markerRef.current.getPosition().lng(),
+    });
+  };
 
   const onConfirm = () => {
     const places = placeRef.current.getPlaces() || [{}];
+    const updatedLocation = {
+      lat: markerRef.current.getPosition().lat(),
+      lng: markerRef.current.getPosition().lng(),
+    };
     ctxDispatch({
       type: 'SAVE_SHIPPING_ADDRESS_MAP_LOCATION',
       payload: {
@@ -120,7 +130,7 @@ export default function MapScreen() {
             </div>
           </StandaloneSearchBox>
           {location.lat !== 0 && location.lng !== 0 && (
-            <MarkerF position={location} onLoad={onMarkerLoad} />
+            <MarkerF position={location} onLoad={onMarkerLoad} draggable={true} onDragEnd={onDragEnd}/>
           )}
         </GoogleMap>
       </LoadScript>

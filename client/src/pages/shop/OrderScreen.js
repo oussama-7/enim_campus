@@ -232,7 +232,7 @@ export default function OrderScreen() {
       <Helmet>
         <title> Order {orderId}</title>
       </Helmet>
-      <h1 className="my-3"> Order {orderId}</h1>
+      <h1 className="my-3 text-center"> Order {orderId}</h1>
       <Row>
         <Col md={8}>
           <Card className="mb-3">
@@ -245,7 +245,7 @@ export default function OrderScreen() {
                 &nbsp;
                 {order.shippingAddress.location &&
                   order.shippingAddress.location.lat && (
-                    <a
+                    <a className='show-map'
                       target="_new"
                       href={`https://maps.google.com?q=${order.shippingAddress.location.lat},${order.shippingAddress.location.lng}`}
                     >
@@ -279,20 +279,20 @@ export default function OrderScreen() {
             </Card.Body>
           </Card>
 
-          <Card className="mb-3">
+          <Card  className="mb-3 border-0">
             <Card.Body>
               <Card.Title>Items</Card.Title>
               <ListGroup variant="flush">
                 {order.orderItems.map((item) => (
                   <ListGroup.Item key={item._id}>
                     <Row className="align-items-center">
-                      <Col md={6}>
+                      <Col  style={{ objectFit: "cover",width: "200px", height: "200px" , marginBottom : "20px"}} md={6}>
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="img-fluid rounded img-thumbnail"
+                          className="img-fluid rounded img-thumbnail border-0"
                         ></img>{' '}
-                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                        <Link to={`/product/${item.slug}`}> <span className="item-name">{item.name}</span></Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>

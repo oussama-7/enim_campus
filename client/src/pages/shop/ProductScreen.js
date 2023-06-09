@@ -139,73 +139,84 @@ function ProductScreen() {
   ) : (
     <div>
       <Nav />
-      <div className="row-container">
-        <Row className="row-wrapper ">
-          <Col>
-            <img className="img-large" src={product.image} alt={product.name} />
-          </Col>
-          <div>
-            <Col>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <Helmet>
-                    <title>{product.name}</title>
-                  </Helmet>
-                  <h1>{product.name}</h1>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Rating
-                    rating={product.rating}
-                    numReviews={product.numReviews}
-                  ></Rating>
-                </ListGroup.Item>
-                <ListGroup.Item>Prix : {product.price}</ListGroup.Item>
-                <ListGroup.Item>
-                  Description:
-                  <p>{product.description}</p>
-                </ListGroup.Item>
-              </ListGroup>
-            </Col>
-            <Col>
-              <Card className="border-0 summary-screen">
-                <Card.Body className="summary-screen">
-                  <ListGroup variant="flush">
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Prix:</Col>
-                        <Col>{product.price}</Col>
-                      </Row>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Status:</Col>
-                        <Col>
-                          {product.countInStock > 0 ? (
-                            <Badge bg="success">En Stock</Badge>
-                          ) : (
-                            <Badge bg="danger">Rupture de Stock</Badge>
-                          )}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                    {product.countInStock > 0 && (
-                      <ListGroup.Item className="border-0">
-                        <div className="d-grid">
-                          <Button onClick={addToCartHandler} variant="primary">
-                            <div className="cart-icon">
-                              <FontAwesomeIcon icon={faCartShopping} />
-                            </div>
-                          </Button>
-                        </div>
+      
+        <Row className="row-wrapper">
+          <div className="row-container">
+            <div>
+              <Col>
+                <img
+                  className="img-large"
+                  src={product.image}
+                  alt={product.name}
+                />
+              </Col>
+            </div>
+            <div>
+              
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <Helmet>
+                      <title>{product.name}</title>
+                    </Helmet>
+                    <h1>{product.name}</h1>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Rating
+                      rating={product.rating}
+                      numReviews={product.numReviews}
+                    ></Rating>
+                  </ListGroup.Item>
+                  <ListGroup.Item>Prix : {product.price}</ListGroup.Item>
+                  <ListGroup.Item>
+                    Description:
+                    <p>{product.description}</p>
+                  </ListGroup.Item>
+                </ListGroup>
+              
+            
+             
+                <Card className="border-0 summary-screen">
+                  <Card.Body className="summary-screen">
+                    <ListGroup variant="flush">
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Prix:</Col>
+                          <Col>{product.price}</Col>
+                        </Row>
                       </ListGroup.Item>
-                    )}
-                  </ListGroup>
-                </Card.Body>
-              </Card>
-            </Col>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>Status:</Col>
+                          <Col>
+                            {product.countInStock > 0 ? (
+                              <Badge bg="success">En Stock</Badge>
+                            ) : (
+                              <Badge bg="danger">Rupture de Stock</Badge>
+                            )}
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
+                      {product.countInStock > 0 && (
+                        <ListGroup.Item className="border-0">
+                          <div className="d-grid">
+                            <Button
+                              onClick={addToCartHandler}
+                              variant="primary"
+                            >
+                              <div className="cart-icon">
+                                <FontAwesomeIcon icon={faCartShopping} />
+                              </div>
+                            </Button>
+                          </div>
+                        </ListGroup.Item>
+                      )}
+                    </ListGroup>
+                  </Card.Body>
+                </Card>
+              
+            </div>
           </div>
         </Row>
-      </div>
       <div className="my-3">
         <h2 ref={reviewsRef}>Reviews</h2>
         <div className="mb-3">

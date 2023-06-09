@@ -13,6 +13,7 @@ import Rating from './Rating';
 import Product from './Product';
 // import { getError } from '../../utils';
 import Nav from './Nav';
+import './shop.css'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -140,7 +141,7 @@ export default function Searchscreen() {
       <Helmet>
         <title>Search Products</title>
       </Helmet>
-      <Row>
+      <Row  style={{  marginTop: "100px" }}>
         <Col md={3}>
           <h3>Department</h3>
           <div>

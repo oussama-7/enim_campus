@@ -65,6 +65,7 @@ body {
     transition: background-color 0.6s ease, box-shadow 0.3s ease !important;
     width: 100%;
     
+    
   }
   .panier-btn:hover {
     /* Define your hover styles */
@@ -224,6 +225,8 @@ button.thumbnail {
   button.thumbnail {
     padding: 0;
   }
+
+  
 /* cartscreen */
 .flex-components{
   width: 900px;
@@ -268,8 +271,12 @@ button.thumbnail {
  }
 
  .item-name{
-  color: black;
-  text-decoration: none !important;
+  color: #4f81c7; /* Change the color to your desired text color */
+  font-weight: bold;
+  font-size: 1.2rem; /* Change the font size to your desired value */
+  text-decoration: none;
+  /* text-shadow: -1px -1px 7px rgba(0,0,0,0.55); */
+  
  }
 
  /* search-box */
@@ -300,13 +307,15 @@ button.thumbnail {
 
 /* productscreen */
 
+
 .row-container{
-  display: flex;
-}
-.row-wrapper{
   margin-top: 50px !important;
-  
+  min-width: 100%;
+  display: flex;
 }
 .summary-screen{
   width: 250px;
 }
+
+
+
