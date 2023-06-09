@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Store } from './Store';
 import Nav from './Nav';
+import './shop.css';
+
 
 export default function PaymentMethodScreen() {
   const navigate = useNavigate();

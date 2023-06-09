@@ -11,6 +11,8 @@ import { Store } from './Store';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthContext';
+import './shop.css';
+
 
 const defaultLocation = { lat: 45.516, lng: -73.56 };
 const libs = ['places'];

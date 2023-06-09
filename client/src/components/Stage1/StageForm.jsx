@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 const StageForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission
+      
     };
+
+    
 
     return (
         <div className="container">

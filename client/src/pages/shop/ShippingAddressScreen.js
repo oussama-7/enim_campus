@@ -6,6 +6,8 @@ import Nav from './Nav';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Store } from './Store';
 import CheckoutSteps from './CheckoutSteps';
+import './shop.css';
+
 
 export default function ShippingAdressScreen() {
   const navigate = useNavigate();
@@ -95,7 +97,7 @@ export default function ShippingAdressScreen() {
           </Form.Group>
           <div className="mb-3">
             <Button
-            className='panier-btn'
+            // className='panier-btn'
               id="chooseOnMap"
               type="button"
               variant="light"
@@ -114,7 +116,7 @@ export default function ShippingAdressScreen() {
           </div>
 
           <div className="mb-3">
-            <Button className='panier-btn' variant="light" type="submit">
+            <Button variant="light" type="submit">
               Continue
             </Button>
           </div>

@@ -53,6 +53,7 @@ orderRouter.get(
         },
       },
     ]);
+    
     const users = await User.aggregate([
       {
         $group: {
@@ -79,7 +80,6 @@ orderRouter.get(
         },
       },
     ]);
-
     res.send({ users, orders, dailyOrders, productCategories });
   })
 );

@@ -13,6 +13,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import LoadingBox from './LoadingBox';
 import { AuthContext } from '../../context/AuthContext';
 import Nav from './Nav';
+import './shop.css';
+
 
 const reducer = (state, action) => {
   switch (action.type) {

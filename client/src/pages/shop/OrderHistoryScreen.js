@@ -9,6 +9,8 @@ import axios from 'axios';
 import { getError } from '../../utils';
 import { Button } from 'react-bootstrap';
 import Nav from './Nav';
+import './shop.css';
+
 
 const reducer = (state, action) => {
   switch (action.type) {
