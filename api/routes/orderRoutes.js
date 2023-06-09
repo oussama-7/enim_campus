@@ -12,7 +12,7 @@ orderRouter.get(
   verifyToken,
   verifyAdmin,
   expressAsyncHandler(async (req, res) => {
-    const orders = await Order.find({});
+    const orders = await Order.find().populate('user','username');
     res.send(orders);
   })
 );

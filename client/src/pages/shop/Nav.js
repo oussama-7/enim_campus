@@ -1,37 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { useContext } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { NavDropdown, Badge, Button } from 'react-bootstrap';
-import { AuthContext } from '../../context/AuthContext';
-import { Store } from './Store';
-import Nav from 'react-bootstrap/Nav';
-import axios from 'axios';
-import { getError } from '../../utils';
-import { toast } from 'react-toastify';
-import SearchBox from './SearchBox';
-import './shop.css';  
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import { LinkContainer } from "react-router-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { NavDropdown, Badge, Button } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
+import { Store } from "./Store";
+import Nav from "react-bootstrap/Nav";
+import axios from "axios";
+import { getError } from "../../utils";
+import { toast } from "react-toastify";
+import SearchBox from "./SearchBox";
+import "./shop.css";
 
 const Navi = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, dispatch } = useContext(AuthContext);
   const { state } = useContext(Store);
-  const { fullBox ,cart } = state;
+  const { fullBox, cart } = state;
   const {
     cart: { cartItems },
   } = state;
   const signoutHandler = () => {
-    dispatch({ type: 'LOGOUT' });
-    localStorage.removeItem('user');
-    localStorage.removeItem('paymentMethod');
-    localStorage.removeItem('shippingAddress');
-    
-  
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("user");
+    localStorage.removeItem("paymentMethod");
+    localStorage.removeItem("shippingAddress");
   };
-   
+
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -48,33 +46,37 @@ const Navi = () => {
     fetchCategories();
   }, []);
   return (
-    
     <div
-    className={
-      sidebarIsOpen
-        ? fullBox
-          ? 'site-container active-cont d-flex flex-column full-box'
-          : 'site-container active-cont d-flex flex-column'
-        : fullBox
-        ? 'site-container d-flex flex-column full-box'
-        : 'site-container d-flex flex-column'
-    }
+      className={
+        sidebarIsOpen
+          ? fullBox
+            ? "site-container  d-flex flex-column full-box"
+            : "site-container  d-flex flex-column"
+          : fullBox
+          ? "site-container d-flex flex-column full-box"
+          : "site-container d-flex flex-column"
+      }
     >
       <header>
-        <Navbar bg="dark" variant="dark" expand="lg">
-          <Container>
-            <Button
+        <Navbar className=" navbar navbar-expand-lg navbar-dark"   >
+          
+          {/* <Container > */}
+            {/* <Button
               variant="dark"
               onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
             >
               <i className="fas fa-bars"></i>
-            </Button>
+            </Button> */}
+            <div className="d-flex align-items-center flex-grow-1 pl-3">
             <LinkContainer to="/">
-              <Navbar.Brand>Boutique</Navbar.Brand>
+              <Navbar.Brand className="navbar-brand">Boutique</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <SearchBox />
+            </Navbar.Collapse>
+            </div>
+              <div className="ms-auto">
               <Nav className="me-auto w-100% justify-content-end">
                 {user ? (
                   <>
@@ -111,10 +113,13 @@ const Navi = () => {
                     </Link>
                   </NavDropdown>
                 ) : (
-                  <Link className="nav-link" to={{
-                    pathname: '/login',
-                    state: { from: location.pathname },
-                  }}>
+                  <Link
+                    className="nav-link"
+                    to={{
+                      pathname: "/login",
+                      state: { from: location.pathname },
+                    }}
+                  >
                     Sign In
                   </Link>
                 )}
@@ -133,37 +138,42 @@ const Navi = () => {
                       <NavDropdown.Item>Users</NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>
-                )},
-                 <div
-        className={
-          sidebarIsOpen
-            ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
-            : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
-        }
-      >
-        <Nav className="flex-column text-white w-100 p-2">
-          <Nav.Item>
-            <strong>Categories</strong>
-          </Nav.Item>
-          {categories.map((category) => (
-            <Nav.Item key={category}>
-              <LinkContainer
-                to={{ pathname: '/search', search: `category=${category}` }}
-                onClick={() => setSidebarIsOpen(false)}
-              >
-                <Nav.Link>{category}</Nav.Link>
-              </LinkContainer>
-            </Nav.Item>
-          ))}
-        </Nav>
-      </div>
+                )}
+                ,
+                
               </Nav>
-            </Navbar.Collapse>
-          </Container>
+              </div>
+          {/* </Container> */}
+         
         </Navbar>
-       
+        
       </header>
-      
+      {/* <div
+                  className={
+                    sidebarIsOpen
+                      ? "active-nav side-navbar d-flex justify-content-between flex-wrap flex-column"
+                      : "side-navbar d-flex justify-content-between flex-wrap flex-column"
+                  }
+                >
+                  <Nav className="flex-column text-white w-100 p-2">
+                    <Nav.Item>
+                      <strong>Categories</strong>
+                    </Nav.Item>
+                    {categories.map((category) => (
+                      <Nav.Item key={category}>
+                        <LinkContainer
+                          to={{
+                            pathname: "/search",
+                            search: `category=${category}`,
+                          }}
+                          onClick={() => setSidebarIsOpen(false)}
+                        >
+                          <Nav.Link>{category}</Nav.Link>
+                        </LinkContainer>
+                      </Nav.Item>
+                    ))}
+                  </Nav>
+                </div> */}
     </div>
   );
 };

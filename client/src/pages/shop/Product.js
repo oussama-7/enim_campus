@@ -5,6 +5,9 @@ import Rating from './Rating';
 import { useContext } from 'react';
 import axios from 'axios';
 import { Store } from './Store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import './shop.css'
 function Product(props) {
   const { product } = props;
 
@@ -29,26 +32,32 @@ function Product(props) {
   };
 
   return (
-    <Card className="product">
+    <Card className="product border-0 ">
+      
       <Link to={`/product/${product.slug}`}>
-        <img src={product.image} className="card-img-top" alt={product.name} />
+        <div  className='product-img_container'>
+        <img src={product.image} className="card-img-top" alt={product.name} style={{ objectFit: "cover",width: "200px", height: "200px" }} />
+        </div> 
       </Link>
+
       <Card.Body>
         <Link to={`/product/${product.slug}`}>
           <Card.Title>{product.name}</Card.Title>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
         <Card.Text>{product.price}</Card.Text>
+      </Card.Body>
         {product.countInStock === 0 ? (
           <Button variant="Light " disabled>
             En rupture de stock
           </Button>
         ) : (
-          <Button onClick={() => addToCartHandler(product)}>
-            Ajouter au panier
+          <Button className='panier-btn product-overlay' onClick={() => addToCartHandler(product)}>
+            <div className="cart-icon">
+    <FontAwesomeIcon icon={faCartShopping} />
+  </div>
           </Button>
         )}
-      </Card.Body>
     </Card>
   );
 }

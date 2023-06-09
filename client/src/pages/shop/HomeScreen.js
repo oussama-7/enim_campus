@@ -61,7 +61,9 @@ function HomeScreen() {
         <Helmet>
           <title>Boutique</title>
         </Helmet>
+        <div className='text-center'>
         <h1>Produits</h1>
+        </div>
         <div className="products">
           {loading ? (
             <LoadingBox />

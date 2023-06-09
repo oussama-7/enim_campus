@@ -5,12 +5,23 @@ import {
   findUsers,
   updateUser,
 } from '../controllers/user.js';
+import expressAsyncHandler from 'express-async-handler';
 import { verifyAdmin, verifyToken, verifyUser } from '../utils/verifyToken.js';
 const router = express.Router();
+
 router.get('/', verifyAdmin, findUsers);
 router.get('/', (req, res) => {
   res.send('hello, this is users endpoint?');
 });
+router.get(
+  '/',
+  verifyToken,
+  verifyAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.send(users);
+  })
+);
 
 // router.get("/checkauthentication",verifyToken,(req,res,next)=>{
 //     res.send("hello user you are logged in.")

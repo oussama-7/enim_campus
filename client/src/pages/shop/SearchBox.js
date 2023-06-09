@@ -13,21 +13,38 @@ export default function SearchBox() {
     navigate(query ? `/search/?query=${query}` : '/search');
   };
   return (
-    <Form className="d-flex me-auto" onSubmit={submitHandler}>
-      <InputGroup>
-        <FormControl
-          type="text"
-          name="q"
-          id="q"
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="search products..."
-          aria-label="Search Products"
-          aria-describedby="button-search"
-        ></FormControl>
-        <Button variant="outline-primary" type="submit" id="button-search">
-          <i className="fas fa-search"></i>
-        </Button>
-      </InputGroup>
-    </Form>
+    <Form className="d-flex flex-column flex-md-row align-items-md-center search-container" onSubmit={submitHandler}>
+  <div className='search-container'>
+    <FormControl className='overflow'
+      type="text"
+      name="q"
+      id="q"
+      onChange={(e) => setQuery(e.target.value)}
+      placeholder="Search products..."
+      aria-label="Search Products"
+      aria-describedby="button-search"
+    />
+    
+  </div>
+  <div>
+  <Button
+    style={{
+      border: 'none',
+      backgroundColor: 'transparent',
+      padding: 0,
+      cursor: 'pointer',
+      outline: 'none',
+    }}
+    variant="outline-primary"
+    type="submit"
+    id="button-search"
+  >
+    <i className="fas fa-search"></i>
+  </Button>
+  </div>
+
+ 
+</Form>
+
   );
 }
