@@ -78,6 +78,9 @@ export default function PlaceOrderScreen() {
       dispatch({ type: 'CREATE_FAIL' });
     }
   };
+  const handleEditCart = () => {
+    navigate('/cart', { state: { from: window.location.pathname } });
+  };
 
   useEffect(() => {
     if (!cart.paymentMethod) {
@@ -116,7 +119,7 @@ export default function PlaceOrderScreen() {
             </Card.Body>
           </Card>
 
-          <Card className="mb-3">
+          <Card className="mb-3 border-0" style={{width :"400px"}}>
             <Card.Body>
               <Card.Title>Items</Card.Title>
               <ListGroup variant="flush">
@@ -129,7 +132,7 @@ export default function PlaceOrderScreen() {
                           alt={item.name}
                           className="img-fluid rounded img-thumbnail"
                         ></img>{' '}
-                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                        <Link className='item-name' to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>
@@ -139,7 +142,8 @@ export default function PlaceOrderScreen() {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to="/cart">Edit</Link>
+              <Button className='panier-btn' style={{marginTop:"10px"}} onClick={handleEditCart} >Edit</Button>
+              
             </Card.Body>
           </Card>
         </Col>
@@ -181,6 +185,7 @@ export default function PlaceOrderScreen() {
                   <div className="d-grid">
                     <Button
                       type="button"
+                      className="panier-btn border-0"
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
                     >

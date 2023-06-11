@@ -94,7 +94,7 @@ function ProductScreen() {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity },
     });
-    navigate("/cart"); //navigate to other pages
+    // navigate("/cart"); //navigate to other pages
   };
 
   const submitHandler = async (e) => {
@@ -138,10 +138,10 @@ function ProductScreen() {
   ) : error ? (
     <div>{error}</div>
   ) : (
-    <div>
+    <div className="productscreen-wrapper">
       <Nav />
-      
-        <Row className="row-wrapper">
+      <div className="row-wrapper"  >
+        <Row >
           <div className="row-container">
             <div>
               <Col>
@@ -152,6 +152,7 @@ function ProductScreen() {
                 />
               </Col>
             </div>
+            
             <div>
               
                 <ListGroup variant="flush">
@@ -167,22 +168,22 @@ function ProductScreen() {
                       numReviews={product.numReviews}
                     ></Rating>
                   </ListGroup.Item>
-                  <ListGroup.Item>Prix : {product.price}</ListGroup.Item>
+                  <ListGroup.Item>Prix: {product.price} </ListGroup.Item>
                   <ListGroup.Item>
                     Description:
-                    <p>{product.description}</p>
+                    <p style={{ overflowWrap: 'break-word' }}>{product.description}</p>
                   </ListGroup.Item>
                 </ListGroup>
               
             
-             
+                
                 <Card className="border-0 summary-screen">
                   <Card.Body className="summary-screen">
                     <ListGroup variant="flush">
                       <ListGroup.Item>
                         <Row>
                           <Col>Prix:</Col>
-                          <Col>{product.price}</Col>
+                          <Col>{product.price} DH</Col>
                         </Row>
                       </ListGroup.Item>
                       <ListGroup.Item>
@@ -218,14 +219,15 @@ function ProductScreen() {
             </div>
           </div>
         </Row>
-      <div className="my-3">
+        </div>
+      <div className="my-3 review-container" style={{ maxWidth: '800px' , margin: '0 auto' }}>
         <h2 ref={reviewsRef}>Reviews</h2>
         <div className="mb-3">
           {product.reviews.length === 0 && (
             <MessageBox>There is no review</MessageBox>
           )}
         </div>
-        <ListGroup>
+        <ListGroup className="rating-list">
           {product.reviews.map((review) => (
             <ListGroup.Item key={review._id}>
               <strong>{review.username}</strong>
@@ -235,7 +237,7 @@ function ProductScreen() {
             </ListGroup.Item>
           ))}
         </ListGroup>
-        <div className="my-3">
+        <div className="my-3 ">
           {user ? (
             <form onSubmit={submitHandler}>
               <h2> Write a customer review</h2>
@@ -253,11 +255,12 @@ function ProductScreen() {
                   <option value="4">4- Very good</option>
                   <option value="5">5- Excelent</option>
                 </Form.Select>
+                
               </Form.Group>
+             
               <FloatingLabel
                 controlId="floatingTextarea"
                 label="Comments"
-                className="mb-3"
               >
                 <Form.Control
                   as="textarea"
@@ -266,6 +269,7 @@ function ProductScreen() {
                   onChange={(e) => setComment(e.target.value)}
                 />
               </FloatingLabel>
+              
               <div className="mb-3">
                 <Button disabled={loadingCreateReview} type="submit">
                   Submit

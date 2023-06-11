@@ -274,48 +274,12 @@ export default function OrderScreen() {
               )}
             </Card.Body>
           </Card>
-
-          <Card className="mb-3 border-0">
-            <Card.Body>
-              <Card.Title>Items</Card.Title>
-              <ListGroup variant="flush">
-                {order.orderItems.map((item) => (
-                  <ListGroup.Item key={item._id}>
-                    <Row className="align-items-center">
-                      <Col
-                        style={{
-                          objectFit: "cover",
-                          width: "200px",
-                          height: "200px",
-                          marginBottom: "20px",
-                        }}
-                        md={6}
-                      >
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="img-fluid rounded img-thumbnail border-0"
-                        ></img>{" "}
-                        <Link to={`/product/${item.slug}`}>
-                          {" "}
-                          <span className="item-name">{item.name}</span>
-                        </Link>
-                      </Col>
-                      <Col md={3}>
-                        <span>{item.quantity}</span>
-                      </Col>
-                      <Col md={3}>{item.price} dh </Col>
-                    </Row>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Card.Body>
-          </Card>
         </Col>
         <Col md={4}>
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Order Summary</Card.Title>
+
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
@@ -349,22 +313,6 @@ export default function OrderScreen() {
                   <ListGroupItem>
                     {isPending ? (
                       <LoadingBox />
-<<<<<<< HEAD
-                    ) : order.paymentMethod === 'PayPal' ? (
-                      <div>
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </div>
-                    ):(
-                      <div className="d-grid">
-                <Button type="button" onClick={handleALaLivraisonPayment}>
-                  Pay
-                </Button>
-              </div>
-=======
                     ) : (
                       <>
                         {order.paymentMethod === "PayPal" ? (
@@ -380,6 +328,8 @@ export default function OrderScreen() {
                             <Button
                               type="button"
                               onClick={handleALaLivraisonPayment}
+                              className="panier-btn border-0"
+                              
                             >
                               Pay
                             </Button>
@@ -387,7 +337,6 @@ export default function OrderScreen() {
                         )}
                         {loadingPay && <LoadingBox></LoadingBox>}
                       </>
->>>>>>> a5e12d739756ce639a5df203cfd3ae7c41bb32f3
                     )}
                   </ListGroupItem>
                 )}
@@ -395,7 +344,7 @@ export default function OrderScreen() {
                   <ListGroup.Item>
                     {loadingDeliver && <LoadingBox></LoadingBox>}
                     <div className="d-grid">
-                      <Button type="button" onClick={deliverOrderHandler}>
+                      <Button className="panier-btn border-0" type="button" onClick={deliverOrderHandler}>
                         Deliver Order
                       </Button>
                     </div>
@@ -405,6 +354,62 @@ export default function OrderScreen() {
             </Card.Body>
           </Card>
         </Col>
+        <Card className=" border-0 "  >
+          <Card.Body >
+            <Card.Title>Items</Card.Title>
+            <div style={{ maxWidth: "1000px" }}>
+              <ListGroup variant="flush">
+                <div style={{ display: "flex" }}>
+                  {order.orderItems.map((item) => (
+                    <ListGroup.Item
+                      key={item._id}
+                      className="border-0 "
+                      style={{
+                        paddingLeft: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Row className="align-items-center border-o">
+                        <Col
+                          style={{
+                            objectFit: "cover",
+                            width: "200px",
+                            // height: "200px",
+                            // marginBottom: "20px",
+                            // paddingBottom : "20px",
+                            // display: "flex",
+                            // flexDirection: "column",
+                          }}
+                          md={6}
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="img-fluid img-thumbnail"
+                            style={{ borderRadius: "20px" }}
+                          ></img>{" "}
+                          <Link to={`/product/${item.slug}`}>
+                            {" "}
+                            <span className="item-name">{item.name}</span>
+                          </Link>
+                        </Col>
+                        <Col md={3}>
+                          <span>
+                            {item.quantity}{" "}
+                            {item.quantity > 1 ? "items" : "item"}
+                          </span>
+                        </Col>
+                        <Col md={3}>{item.price} dh </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))}
+                </div>
+              </ListGroup>
+            </div>
+          </Card.Body>
+        </Card>
       </Row>
     </div>
   );

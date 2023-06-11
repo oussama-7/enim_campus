@@ -18,6 +18,9 @@ body {
   main {
     flex: 1;
   }
+  .site-container{
+    max-height: 100vh;
+  }
 
   
   /* nav */
@@ -61,18 +64,54 @@ body {
     overflow: hidden;
   }
   .panier-btn{
-    background-color: #f0c040 !important;
+    background-color: #4f81c7 !important;
     transition: background-color 0.6s ease, box-shadow 0.3s ease !important;
     width: 100%;
+   
+    box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-webkit-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-moz-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
     
     
   }
   .panier-btn:hover {
     /* Define your hover styles */
     /* For example, change the background color and add a box shadow */
-    background-color: #4f81c7 !important;
+    background-color: #f0c040 !important;
+    
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-webkit-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-moz-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
   }
+
+  .shipping-btn{
+    background-color: #4f81c7 !important;
+    transition: background-color 0.6s ease, box-shadow 0.3s ease !important;
+    
+   
+    box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-webkit-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-moz-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+  }
+   
+  .shipping-btn:hover {
+    /* Define your hover styles */
+    /* For example, change the background color and add a box shadow */
+    background-color: #f0c040 !important;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-webkit-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+-moz-box-shadow: -3px 12px 33px -13px rgba(0,0,0,0.75);
+  }
+.items-container{
+  display: flex;
+  flex-direction: column;
+  
+}
+ 
+
   
   
   
@@ -99,6 +138,9 @@ body {
   .img-large {
     max-width: 100%;
     height: 500px;
+    border-radius: 20px;
+    -webkit-box-shadow: -5px 3px 15px 2px rgba(0,0,0,0.61); 
+box-shadow: -5px 3px 15px 2px rgba(0,0,0,0.61);
   }
  
   
@@ -168,7 +210,7 @@ button.thumbnail {
     color: #a0a0a0;
   }
   .checkout-steps > div.active {
-    border-bottom: 0.2rem solid #f08000;
+    border-bottom: 0.2rem solid #4f81c7;
     color: #f08000;
   }
   
@@ -238,6 +280,7 @@ button.thumbnail {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   
 }
 .cartscreen-wrapper{
@@ -311,12 +354,22 @@ button.thumbnail {
 
 .row-container{
   margin-top: 50px !important;
-  min-width: 100%;
+  max-width: 100%;
   display: flex;
+align-items: center;
+justify-content: center;
+
 }
 .summary-screen{
   width: 250px;
 }
+.review-form{
+  width: 100%;
+}
+
+
+/* reviews */
+
 
 
 

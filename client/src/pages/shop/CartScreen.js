@@ -57,7 +57,8 @@ export default function CartScreen() {
       <Helmet>
         <title>Carte d'Achat</title>
       </Helmet>
-      <div className="cartscreen-container">
+      
+      <div className="cartscreen-container ">
         <h1>Shopping Cart</h1>
         <div>
           <div className="flex-components">
@@ -141,7 +142,7 @@ export default function CartScreen() {
                   </div>
                   <div>
                     <Button
-                      className="custom-btn"
+                      className="panier-btn"
                       type="button"
                       variant="primary"
                       onClick={checkoutHandler}

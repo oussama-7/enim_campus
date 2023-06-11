@@ -151,19 +151,14 @@ export default function ProductListScreen() {
   };
 
   return (
-    <div>
+    <div >
       <Nav />
+      <div style={{marginTop:"20px"}}>
       <Row>
         <Col>
-          <h1>Products</h1>
+          <h1 className='text-center'>Products</h1>
         </Col>
-        <Col className="col text-end">
-          <div>
-            <Button type="button" onClick={createHandler}>
-              Create Product
-            </Button>
-          </div>
-        </Col>
+        
       </Row>
       {loadingCreate && <LoadingBox></LoadingBox>}
       {loadingDelete && <LoadingBox></LoadingBox>}
@@ -189,7 +184,7 @@ export default function ProductListScreen() {
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>{product.price}</td>
+                  <td>{product.price} DH</td>
                   <td>{product.category}</td>
                   <td>
                     <Button
@@ -211,8 +206,15 @@ export default function ProductListScreen() {
                 </tr>
               ))}
             </tbody>
+            
           </table>
+          <div className="d-flex justify-content-end" style={{marginRight:"100px"}}>
+          <Button className='shipping-btn' type="button" onClick={createHandler}>
+              Create Product
+            </Button>
+          </div>
           <div>
+            
             {[...Array(pages).keys()].map((x) => (
               <Link
                 className={x + 1 === Number(page) ? 'btn text-bold' : 'btn'}
@@ -222,9 +224,13 @@ export default function ProductListScreen() {
                 {x + 1}
               </Link>
             ))}
+            
           </div>
+          
+          
         </>
       )}
+      </div>
     </div>
   );
 }

@@ -59,7 +59,10 @@ function HomeScreen() {
     <div className="d-flex flex-column site-container">
       <Nav />
 
-      <div>
+      <div style={{
+                          
+                          marginTop: "20px",
+                        }}>
         <Helmet>
           <title>Boutique</title>
         </Helmet>

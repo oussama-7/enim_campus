@@ -62,7 +62,7 @@ export default function PaymentMethodScreen() {
             />
           </div>
           <div>
-            <Button type="submit">Continue</Button>
+            <Button className='panier-btn' type="submit">Continue</Button>
           </div>
         </Form>
       </div>

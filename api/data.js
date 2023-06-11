@@ -19,7 +19,7 @@ const data = {
       slug: 'enim-shirt',
       category: 'Shirts',
       image: '/images/1.jpg',
-      price: 1000,
+      price: 100,
       countInStock: 0,
       brand: 'Adidas',
       rating: 4.0,

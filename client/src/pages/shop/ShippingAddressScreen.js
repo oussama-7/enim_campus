@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Nav from './Nav';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Store } from './Store';
-import CheckoutSteps from './CheckoutSteps';
-import './shop.css';
-
+import React, { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Nav from "./Nav";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Store } from "./Store";
+import CheckoutSteps from "./CheckoutSteps";
+import "./shop.css";
 
 export default function ShippingAdressScreen() {
   const navigate = useNavigate();
@@ -17,40 +16,39 @@ export default function ShippingAdressScreen() {
     user,
     cart: { shippingAddress },
   } = state;
-  const [fullName, setFullName] = useState(shippingAddress.fullName || '');
-  const [address, setAddress] = useState(shippingAddress.address || '');
-  const [city, setCity] = useState(shippingAddress.city || '');
+  const [fullName, setFullName] = useState(shippingAddress.fullName || "");
+  const [address, setAddress] = useState(shippingAddress.address || "");
+  const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ''
+    shippingAddress.postalCode || ""
   );
-
 
   const submitHandler = (e) => {
     e.preventDefault();
     ctxDispatch({
-      type: 'SAVE_SHIPPING_ADDRESS',
+      type: "SAVE_SHIPPING_ADDRESS",
       payload: {
         fullName,
         address,
         city,
         postalCode,
-        location : shippingAddress.location,
+        location: shippingAddress.location,
       },
     });
     localStorage.setItem(
-      'shippingAddress',
+      "shippingAddress",
       JSON.stringify({
         fullName,
         address,
         city,
         postalCode,
-        location : shippingAddress.location,
+        location: shippingAddress.location,
       })
     );
-    navigate('/payment');
+    navigate("/payment");
   };
   useEffect(() => {
-    ctxDispatch({ type: 'SET_FULLBOX_OFF' });
+    ctxDispatch({ type: "SET_FULLBOX_OFF" });
   }, [ctxDispatch, fullBox]);
 
   return (
@@ -95,16 +93,18 @@ export default function ShippingAdressScreen() {
               required
             />
           </Form.Group>
-          <div className="mb-3">
-            <Button
-            // className='panier-btn'
-              id="chooseOnMap"
-              type="button"
-              variant="light"
-              onClick={() => navigate('/map')}
-            >
-              Choose Location On Map
-            </Button>
+          <div >
+            <div>
+              <Button style={{marginLeft :'10px'}}
+                className="shipping-btn border-0"
+                variant="light"
+                type="submit"
+                onClick={() => navigate("/map")}
+              >
+                Choose Location On Map
+              </Button>
+            </div>
+
             {shippingAddress.location && shippingAddress.location.lat ? (
               <div>
                 LAT: {shippingAddress.location.lat}
@@ -113,12 +113,12 @@ export default function ShippingAdressScreen() {
             ) : (
               <div>No location</div>
             )}
-          </div>
 
-          <div className="mb-3">
-            <Button variant="light" type="submit">
-              Continue
-            </Button>
+            <div>
+              <Button variant="light" type="submit" className="shipping-btn border-0">
+                Continue
+              </Button>
+            </div>
           </div>
         </Form>
       </div>
