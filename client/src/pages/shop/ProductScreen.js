@@ -198,7 +198,7 @@ function ProductScreen() {
                           </Col>
                         </Row>
                       </ListGroup.Item>
-                      {product.countInStock > 0 && (
+                      {product.countInStock > 0 && user && (
                         <ListGroup.Item className="border-0">
                           <div className="d-grid">
                             <Button

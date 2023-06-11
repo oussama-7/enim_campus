@@ -8,9 +8,10 @@ import { Store } from './Store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './shop.css'
+import { AuthContext } from '../../context/AuthContext';
 function Product(props) {
   const { product } = props;
-
+const{user} = useContext(AuthContext)
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -52,12 +53,16 @@ function Product(props) {
             En rupture de stock
           </Button>
         ) : (
+           user && (
           <Button className='panier-btn product-overlay' onClick={() => addToCartHandler(product)}>
             <div className="cart-icon">
     <FontAwesomeIcon icon={faCartShopping} />
   </div>
           </Button>
-        )}
+           )
+          )}
+        
+       
     </Card>
   );
 }

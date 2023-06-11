@@ -55,11 +55,11 @@ export default function CartScreen() {
     <div>
       <Nav />
       <Helmet>
-        <title>Carte d'Achat</title>
+        <title>Panier</title>
       </Helmet>
       
       <div className="cartscreen-container ">
-        <h1>Shopping Cart</h1>
+        <h1>Panier de produits</h1>
         <div>
           <div className="flex-components">
             <div className="cart-container">
@@ -80,7 +80,8 @@ export default function CartScreen() {
                             <img
                               src={item.image}
                               alt={item.name}
-                              className=" border-0 img-fluid rounded img-thumbnail "
+                              className=" border-0 img-fluid  img-thumbnail "
+                              style={{borderRadius : '10px'}}
                             ></img>{" "}
                             <Link to={`/product/${item.slug}`}>
                               <span className="item-name">{item.name}</span>
@@ -142,11 +143,12 @@ export default function CartScreen() {
                   </div>
                   <div>
                     <Button
-                      className="panier-btn"
+                      className="panier-btn border-0"
                       type="button"
                       variant="primary"
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
+                     
                     >
                       Proceed to Checkout
                     </Button>
