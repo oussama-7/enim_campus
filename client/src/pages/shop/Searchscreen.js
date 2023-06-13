@@ -139,7 +139,7 @@ export default function Searchscreen() {
     <div>
       <Nav />
       <Helmet>
-        <title>Search Products</title>
+        <title>Recherche des produits</title>
       </Helmet>
       <Row  style={{  marginTop: "100px" }}>
         <Col md={3}>
@@ -167,7 +167,7 @@ export default function Searchscreen() {
             </ul>
           </div>
           <div>
-            <h3>Price</h3>
+            <h3>Prix</h3>
             <ul>
               <li>
                 <Link
@@ -223,7 +223,7 @@ export default function Searchscreen() {
               <Row className="justify-content-between mb-3">
                 <Col md={6}>
                   <div>
-                    {countProducts === 0 ? 'No' : countProducts} Results
+                    {countProducts === 0 ? 'No' : countProducts} Resultats
                     {query !== 'all' && ' : ' + query}
                     {category !== 'all' && ' : ' + category}
                     {price !== 'all' && ' : Price ' + price}
@@ -249,10 +249,10 @@ export default function Searchscreen() {
                       navigate(getFilterUrl({ order: e.target.value }));
                     }}
                   >
-                    <option value="newest">Newest Arrivals</option>
-                    <option value="lowest">Price: Low to High</option>
-                    <option value="highest">Price: High to Low</option>
-                    <option value="toprated">Avg. Customer Reviews</option>
+                    <option value="newest">Nouvel arrivage</option>
+                    <option value="lowest">Prix: Décroissant</option>
+                    <option value="highest">Prix: Croissant</option>
+                    <option value="toprated">Avis de clients</option>
                   </select>
                 </Col>
               </Row>

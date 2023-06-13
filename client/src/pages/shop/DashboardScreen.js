@@ -9,6 +9,7 @@ import { getError } from '../../utils';
 import LoadingBox from './LoadingBox';
 import MessageBox from './MessageBox';
 import { AuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -59,7 +60,11 @@ export default function DashboardScreen() {
   return (
     <div>
       <Nav />
-      <h1>Dashboard</h1>
+      <Helmet>
+        <title>Tableau de Bord</title>
+      </Helmet>
+      <div style={{marginTop:"20px"}}>
+      <h1 className='text-center'>Tableau de bord</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (
@@ -75,7 +80,7 @@ export default function DashboardScreen() {
                       ? summary.users[0].numUsers
                       : 0}
                   </Card.Title>
-                  <Card.Text> Users</Card.Text>
+                  <Card.Text> Utilisateurs</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -83,11 +88,11 @@ export default function DashboardScreen() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                  {summary.orders && summary.orders.numOrders !== undefined
+                  {summary.orders && summary.orders.numOrders 
                       ? summary.orders.numOrders
                       : 0}
                   </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  <Card.Text> Commandes</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -96,20 +101,20 @@ export default function DashboardScreen() {
                 <Card.Body>
                   <Card.Title>
                   
-                  {summary.orders && summary.orders.totalSales !== undefined
+                  {summary.orders && summary.orders.totalSales 
                       ? summary.orders.totalSales.toFixed(2)
                       : 0}{' '}
                     DH
                   </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  <Card.Text> Commandes</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
           </Row>
           <div className="my-3">
-            <h2>Sales</h2>
+            <h2>Ventes</h2>
             {summary.dailyOrders.length === 0 ? (
-              <MessageBox>No Sale</MessageBox>
+              <MessageBox>Pas de ventes</MessageBox>
             ) : (
               <Chart
                 width="100%"
@@ -117,16 +122,16 @@ export default function DashboardScreen() {
                 chartType="AreaChart"
                 loader={<div>Loading Chart...</div>}
                 data={[
-                  ['Date', 'Sales'],
+                  ['Date', 'Ventes'],
                   ...summary.dailyOrders.map((x) => [x._id, x.sales]),
                 ]}
               ></Chart>
             )}
           </div>
           <div className="my-3">
-            <h2>Categories</h2>
+            <h2>Catégories</h2>
             {summary.productCategories.length === 0 ? (
-              <MessageBox>No Category</MessageBox>
+              <MessageBox>Pas de catégories</MessageBox>
             ) : (
               <Chart
                 width="100%"
@@ -142,6 +147,7 @@ export default function DashboardScreen() {
           </div>
         </>
       )}
+      </div>
     </div>
   );
 }

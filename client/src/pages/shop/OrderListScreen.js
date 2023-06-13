@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './shop.css';
-
+import Nav from "./Nav";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -95,10 +95,12 @@ export default function OrderListScreen() {
   };
   return (
     <div>
+       <Nav />
       <Helmet>
-        <title>Orders</title>
+        <title>Commandes</title>
       </Helmet>
-      <h1>Orders</h1>
+      <div style={{marginTop:"20px"}}>
+      <h1 className='text-center'>Commandes</h1>
       {loadingDelete && <LoadingBox></LoadingBox>}
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -109,12 +111,12 @@ export default function OrderListScreen() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>USER</th>
-              <th>DATE</th>
-              <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th>ACTIONS</th>
+              <th>Utilisateur</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Payé</th>
+              <th>Livré</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -123,13 +125,13 @@ export default function OrderListScreen() {
                 <td>{order._id}</td>
                 <td>{order.user ? order.user.username : 'DELETED USER'}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
-                <td>{order.totalPrice.toFixed(2)}</td>
-                <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
+                <td>{order.totalPrice.toFixed(2)} DH</td>
+                <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'Non'}</td>
 
                 <td>
                   {order.isDelivered
                     ? order.deliveredAt.substring(0, 10)
-                    : 'No'}
+                    : 'Non'}
                 </td>
                 <td>
                   <Button
@@ -147,7 +149,7 @@ export default function OrderListScreen() {
                     variant="light"
                     onClick={() => deleteHandler(order)}
                   >
-                    Delete
+                    Supprimer
                   </Button>
                 </td>
               </tr>
@@ -155,6 +157,7 @@ export default function OrderListScreen() {
           </tbody>
         </table>
       )}
+      </div>
     </div>
   );
 }

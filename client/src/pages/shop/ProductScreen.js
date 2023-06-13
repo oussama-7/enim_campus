@@ -224,7 +224,7 @@ function ProductScreen() {
         <h2 ref={reviewsRef}>Reviews</h2>
         <div className="mb-3">
           {product.reviews.length === 0 && (
-            <MessageBox>There is no review</MessageBox>
+            <MessageBox>Pas d'avis</MessageBox>
           )}
         </div>
         <ListGroup className="rating-list">
@@ -271,17 +271,17 @@ function ProductScreen() {
               </FloatingLabel>
               
               <div className="mb-3">
-                <Button disabled={loadingCreateReview} type="submit">
-                  Submit
+                <Button className="shipping-btn" disabled={loadingCreateReview} type="submit">
+                  Confirmer
                 </Button>
                 {loadingCreateReview && <LoadingBox></LoadingBox>}
               </div>
             </form>
           ) : (
             <MessageBox>
-              Please{" "}
+              S'il vous plait{" "}
               <Link to={`/login?redirect=/product/${product.slug}`}>
-                Sign In
+                Authentifier vous
               </Link>{" "}
               to write a review
             </MessageBox>

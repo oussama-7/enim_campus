@@ -81,7 +81,7 @@ const Navi = () => {
                 {user ? (
                   <>
                     <Link to="/cart" className="nav-link">
-                      Cart
+                      Panier
                       {cart.cartItems.length > 0 && (
                         <Badge pill bg="danger">
                           {/* {cart.cartItems.length} */}
@@ -98,10 +98,10 @@ const Navi = () => {
                 {user !== null ? (
                   <NavDropdown title={user.username} id="basic-nav-dropdown">
                     <LinkContainer to="/profile">
-                      <NavDropdown.Item>User Profile</NavDropdown.Item>
+                      <NavDropdown.Item>Profile d'utilisateur</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/orderhistory">
-                      <NavDropdown.Item>Order History</NavDropdown.Item>
+                      <NavDropdown.Item>Historique de commandes</NavDropdown.Item>
                     </LinkContainer>
                     <NavDropdown.Divider />
                     <Link
@@ -126,13 +126,13 @@ const Navi = () => {
                 {user !== null && user.isAdmin && (
                   <NavDropdown title="Admin" id="admin-nav-dropdown">
                     <LinkContainer to="/admin/dashboard">
-                      <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                      <NavDropdown.Item>Tableau de bord</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/admin/products">
-                      <NavDropdown.Item>Products</NavDropdown.Item>
+                      <NavDropdown.Item>Produits</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/admin/orders">
-                      <NavDropdown.Item>Orders</NavDropdown.Item>
+                      <NavDropdown.Item>Commandes</NavDropdown.Item>
                     </LinkContainer>
                     
                   </NavDropdown>

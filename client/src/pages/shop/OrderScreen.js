@@ -226,17 +226,17 @@ export default function OrderScreen() {
     <div>
       <Nav />
       <Helmet>
-        <title> Order {orderId}</title>
+        <title> Commande {orderId}</title>
       </Helmet>
-      <h1 className="my-3 text-center"> Order {orderId}</h1>
+      <h1 className="my-3 text-center"> Commande N- {orderId}</h1>
       <Row>
         <Col md={8}>
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Shipping</Card.Title>
+              <Card.Title>Livraison</Card.Title>
               <Card.Text>
-                <strong>Name:</strong> {order.shippingAddress.fullName} <br />
-                <strong>Address: </strong> {order.shippingAddress.address},
+                <strong>Nom complet:</strong> {order.shippingAddress.fullName} <br />
+                <strong>Adresse: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 &nbsp;
                 {order.shippingAddress.location &&
@@ -246,31 +246,31 @@ export default function OrderScreen() {
                       target="_new"
                       href={`https://maps.google.com?q=${order.shippingAddress.location.lat},${order.shippingAddress.location.lng}`}
                     >
-                      Show On Map
+                      Montrer sur la carte
                     </a>
                   )}
               </Card.Text>
               {order.isDelivered ? (
                 <MessageBox variant="success">
-                  Delivered at {order.deliveredAt}
+                  livré le {order.deliveredAt}
                 </MessageBox>
               ) : (
-                <MessageBox variant="danger">Not Delivered</MessageBox>
+                <MessageBox variant="danger">Pas encore livré</MessageBox>
               )}
             </Card.Body>
           </Card>
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Payment</Card.Title>
+              <Card.Title>Paiement</Card.Title>
               <Card.Text>
-                <strong>Method:</strong> {order.paymentMethod}
+                <strong>Methode:</strong> {order.paymentMethod}
               </Card.Text>
               {order.isPaid ? (
                 <MessageBox variant="success">
-                  Paid at {order.paidAt}
+                  Payé le {order.paidAt}
                 </MessageBox>
               ) : (
-                <MessageBox variant="danger">Not Paid</MessageBox>
+                <MessageBox variant="danger"> Pas encore payé</MessageBox>
               )}
             </Card.Body>
           </Card>
@@ -278,34 +278,31 @@ export default function OrderScreen() {
         <Col md={4}>
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Order Summary</Card.Title>
+              <Card.Title>Montant Total</Card.Title>
 
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
-                    <Col>Items</Col>
-                    <Col>{order.itemsPrice.toFixed(2)} dh </Col>
+                    <Col>Produits</Col>
+                    <Col>{order.itemsPrice.toFixed(2)} DH </Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Shipping</Col>
-                    <Col>${order.shippingPrice.toFixed(2)} dh </Col>
+                    <Col>Livraison</Col>
+                    <Col>{order.shippingPrice.toFixed(2)} DH </Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Row>
-                    <Col>Tax</Col>
-                    <Col>{order.taxPrice.toFixed(2)} dh </Col>
-                  </Row>
+                 
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong> Order Total</strong>
+                      <strong> Total:</strong>
                     </Col>
                     <Col>
-                      <strong>{order.totalPrice.toFixed(2)} dh </strong>
+                      <strong>{order.totalPrice.toFixed(2)} DH </strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -331,7 +328,7 @@ export default function OrderScreen() {
                               className="panier-btn border-0"
                               
                             >
-                              Pay
+                              Payer
                             </Button>
                           </div>
                         )}
@@ -340,12 +337,12 @@ export default function OrderScreen() {
                     )}
                   </ListGroupItem>
                 )}
-                {order.isPaid && !order.isDelivered && (
+                {order.isPaid && !order.isDelivered && user.isAdmin && (
                   <ListGroup.Item>
                     {loadingDeliver && <LoadingBox></LoadingBox>}
                     <div className="d-grid">
                       <Button className="panier-btn border-0" type="button" onClick={deliverOrderHandler}>
-                        Deliver Order
+                        Confirmer la livraison
                       </Button>
                     </div>
                   </ListGroup.Item>
@@ -356,7 +353,7 @@ export default function OrderScreen() {
         </Col>
         <Card className=" border-0 "  >
           <Card.Body >
-            <Card.Title>Items</Card.Title>
+            <Card.Title>Produits</Card.Title>
             <div style={{ maxWidth: "1000px" }}>
               <ListGroup variant="flush">
                 <div style={{ display: "flex" }}>
@@ -395,13 +392,13 @@ export default function OrderScreen() {
                             <span className="item-name">{item.name}</span>
                           </Link>
                         </Col>
-                        <Col md={3}>
+                        <Col >
                           <span>
                             {item.quantity}{" "}
-                            {item.quantity > 1 ? "items" : "item"}
+                            {item.quantity > 1 ? "Produits" : "Produit"}
                           </span>
                         </Col>
-                        <Col md={3}>{item.price} dh </Col>
+                        <Col md={3} style={{marginTop :"5px"}} >{item.price} DH </Col>
                       </Row>
                     </ListGroup.Item>
                   ))}

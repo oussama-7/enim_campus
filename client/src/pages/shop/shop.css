@@ -211,7 +211,7 @@ button.thumbnail {
   }
   .checkout-steps > div.active {
     border-bottom: 0.2rem solid #4f81c7;
-    color: #f08000;
+    color: #4f81c7;
   }
   
   /* sidebar */

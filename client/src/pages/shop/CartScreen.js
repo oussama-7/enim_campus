@@ -109,7 +109,7 @@ export default function CartScreen() {
                               <i className="fas fa-plus-circle"></i>
                             </Button>
                           </Col>
-                          <Col className="border-0"> {item.price}</Col>
+                          <Col className="border-0"> {item.price} DH</Col>
                           <Col className="border-0">
                             <Button
                               onClick={() => removeItemHandler(item)}
@@ -130,8 +130,8 @@ export default function CartScreen() {
                 <div className="summary">
                   <div>
                     <h3 className="subtotal">
-                      Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
-                      items) : {""}
+                      Montant Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
+                      produits) : {""}
                       <span className="total-price">
                         {cartItems.reduce(
                           (a, c) => a + c.price * c.quantity,
@@ -150,7 +150,7 @@ export default function CartScreen() {
                       disabled={cartItems.length === 0}
                      
                     >
-                      Proceed to Checkout
+                      Passer au paiement
                     </Button>
                   </div>
                 </div>

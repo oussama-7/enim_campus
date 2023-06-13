@@ -156,7 +156,7 @@ export default function ProductListScreen() {
       <div style={{marginTop:"20px"}}>
       <Row>
         <Col>
-          <h1 className='text-center'>Products</h1>
+          <h1 className='text-center'>Produits</h1>
         </Col>
         
       </Row>
@@ -173,10 +173,10 @@ export default function ProductListScreen() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>ACTIONS</th>
+                <th>Nom du produit</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -192,7 +192,7 @@ export default function ProductListScreen() {
                       variant="light"
                       onClick={() => navigate(`/admin/product/${product._id}`)}
                     >
-                      Edit
+                      Modifier
                     </Button>
                     &nbsp;
                     <Button
@@ -200,7 +200,7 @@ export default function ProductListScreen() {
                       variant="light"
                       onClick={() => deleteHandler(product)}
                     >
-                      Delete
+                      Supprimer
                     </Button>
                   </td>
                 </tr>
@@ -210,7 +210,7 @@ export default function ProductListScreen() {
           </table>
           <div className="d-flex justify-content-end" style={{marginRight:"100px"}}>
           <Button className='shipping-btn' type="button" onClick={createHandler}>
-              Create Product
+              Créer un produit
             </Button>
           </div>
           <div>

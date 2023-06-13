@@ -55,14 +55,14 @@ export default function ShippingAdressScreen() {
     <div>
       <Nav />
       <Helmet>
-        <title> Shipping Address</title>
+        <title> Adresse de livraison</title>
       </Helmet>
       <CheckoutSteps step1 step2></CheckoutSteps>
       <div className="container small container">
-        <h1 className="my-3 text-center">Shipping Address</h1>
+        <h1 className="my-3 text-center">Addresse de livraison</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="fullName">
-            <Form.Label>Full Name</Form.Label>
+            <Form.Label>Nom Complet</Form.Label>
             <Form.Control
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -70,7 +70,7 @@ export default function ShippingAdressScreen() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="address">
-            <Form.Label>Address</Form.Label>
+            <Form.Label>Addresse</Form.Label>
             <Form.Control
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -78,7 +78,7 @@ export default function ShippingAdressScreen() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="city">
-            <Form.Label>City</Form.Label>
+            <Form.Label>Ville</Form.Label>
             <Form.Control
               value={city}
               onChange={(e) => setCity(e.target.value)}
@@ -86,7 +86,7 @@ export default function ShippingAdressScreen() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="postalCode">
-            <Form.Label>Postal Code</Form.Label>
+            <Form.Label>Code Postal</Form.Label>
             <Form.Control
               value={postalCode}
               onChange={(e) => setPostalCode(e.target.value)}
@@ -101,7 +101,7 @@ export default function ShippingAdressScreen() {
                 type="submit"
                 onClick={() => navigate("/map")}
               >
-                Choose Location On Map
+                Choisir la localisation sur la carte
               </Button>
             </div>
 
@@ -111,12 +111,12 @@ export default function ShippingAdressScreen() {
                 LNG:{shippingAddress.location.lng}
               </div>
             ) : (
-              <div>No location</div>
+              <div>Pas d'adresse</div>
             )}
 
             <div>
               <Button variant="light" type="submit" className="shipping-btn border-0">
-                Continue
+                Continuer
               </Button>
             </div>
           </div>
