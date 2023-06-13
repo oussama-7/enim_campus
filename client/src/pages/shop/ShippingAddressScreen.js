@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Nav from "./Nav";
+import Nav from "./Nav 2";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Store } from "./Store";
 import CheckoutSteps from "./CheckoutSteps";
@@ -35,18 +35,9 @@ export default function ShippingAdressScreen() {
         location: shippingAddress.location,
       },
     });
-    localStorage.setItem(
-      "shippingAddress",
-      JSON.stringify({
-        fullName,
-        address,
-        city,
-        postalCode,
-        location: shippingAddress.location,
-      })
-    );
     navigate("/payment");
   };
+
   useEffect(() => {
     ctxDispatch({ type: "SET_FULLBOX_OFF" });
   }, [ctxDispatch, fullBox]);

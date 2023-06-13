@@ -1,29 +1,28 @@
-import { useEffect, useReducer, Link } from 'react';
+import { useEffect, useReducer, Link } from "react";
 // import data from '../data';
-import axios from 'axios';
-import { useContext } from 'react';
-import Product from './Product';
-import { Helmet } from 'react-helmet-async';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import LoadingBox from './LoadingBox';
-import MessageBox from './MessageBox';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import { LinkContainer } from 'react-router-bootstrap';
-import Badge from 'react-bootstrap/Badge';
-import { Store } from './Store';
-import Nav from './Nav';
-import './shop.css';
-
+import axios from "axios";
+import { useContext } from "react";
+import Product from "./Product";
+import { Helmet } from "react-helmet-async";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import LoadingBox from "./LoadingBox";
+import MessageBox from "./MessageBox";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import { LinkContainer } from "react-router-bootstrap";
+import Badge from "react-bootstrap/Badge";
+import { Store } from "./Store";
+import Nav from "./Nav";
+import "./shop.css";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_REQUEST':
+    case "FETCH_REQUEST":
       return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
+    case "FETCH_SUCCESS":
       return { ...state, products: action.payload, loading: false };
-    case 'FETCH_FAIL':
+    case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
@@ -34,20 +33,20 @@ function HomeScreen() {
   const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     products: [],
     loading: true,
-    error: '',
+    error: "",
   });
 
   // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      dispatch({ type: 'FETCH_REQUEST' });
+      dispatch({ type: "FETCH_REQUEST" });
       try {
         // const result = await axios.get('/api/products');
-        const result = await axios.get('http://localhost:8800/api/products');
+        const result = await axios.get("http://localhost:8800/api/products");
 
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+        dispatch({ type: "FETCH_FAIL", payload: err.message });
       }
 
       // setProducts(result.data);
@@ -56,18 +55,19 @@ function HomeScreen() {
   }, []);
 
   return (
-    <div className="d-flex flex-column site-container">
+    <div className="d-flex flex-column ">
       <Nav />
 
-      <div style={{
-                          
-                          marginTop: "20px",
-                        }}>
+      <div
+        style={{
+          marginTop: "20px",
+        }}
+      >
         <Helmet>
           <title>Boutique</title>
         </Helmet>
-        <div className='text-center'>
-        <h1>Produits</h1>
+        <div className="text-center">
+          <h1>Produits</h1>
         </div>
         <div className="products">
           {loading ? (

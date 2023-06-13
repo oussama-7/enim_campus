@@ -54,7 +54,7 @@ const{user} = useContext(AuthContext)
           </Button>
         ) : (
            user && (
-          <Button className='panier-btn product-overlay' onClick={() => addToCartHandler(product)}>
+          <Button className='panier-btn product-overlay, border-0' onClick={() => addToCartHandler(product)}>
             <div className="cart-icon">
     <FontAwesomeIcon icon={faCartShopping} />
   </div>

@@ -2,10 +2,11 @@ import React from "react";
 import "./event.css";
 import { useParams } from "react-router-dom"; // Importer useParams depuis react-router-dom
 import useFetch from "../../hooks/useFetch";
-import EventHeader from "../../components/eventheader/EventHeader";
+
 import Bas from "../../components/bas/Bas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import EventHeader from "../../components/eventheader/EventHeader";
 
 const Event = () => {
   const { id } = useParams(); // Utiliser useParams pour extraire l'ID de l'URL

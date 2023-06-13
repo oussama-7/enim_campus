@@ -47,7 +47,6 @@ const location = useLocation();
            navigate (location.state.from);
       } else{
         navigate("/");
-        
       }
       const { state } = location;
   const previousPath = state?.from || "/";

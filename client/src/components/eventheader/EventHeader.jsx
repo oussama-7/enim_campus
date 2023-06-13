@@ -32,13 +32,15 @@ const EventHeader = ({ type }) => {
  
   return (
     
-    <div className="header-para">
-      <nav className="navbar navbar-expand-lg navbar-dark">
+    <div className="header-para" >
+      <nav className="navbar navbar-expand-lg navbar-dark " style={{marginTop:"30px"}} >
           
-           <Link to="/parascolaire" style={{color :"inherit",textDecoration:"none"}}>
+         <Link to="/parascolaire" style={{color :"inherit",textDecoration:"none" }}>
+        <span className=" nav-item navbar-brand">Enim Campus</span>
+        </Link> 
+{/* <Link to="/parascolaire" style={{color :"inherit",textDecoration:"none"}}>
         <span className="logo">ENIM CAMPUS</span>
-        </Link>
-
+        </Link> */}
           <button
             className="navbar-toggler"
             type="button"

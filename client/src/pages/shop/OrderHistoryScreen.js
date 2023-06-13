@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { getError } from '../../utils';
 import { Button } from 'react-bootstrap';
-import Nav from './Nav';
+import Nav from './Nav 2';
 import './shop.css';
 
 

@@ -17,7 +17,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Nav from "./Nav";
+import Nav from "./Nav 2";
 import { toast } from "react-toastify";
 import "./shop.css";
 

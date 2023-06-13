@@ -367,6 +367,18 @@ justify-content: center;
   width: 100%;
 }
 
+.custom-dropdown .dropdown-menu {
+  position: absolute;
+  width: auto;
+  min-width: 100%;
+  max-width: 100%;
+  left: 0 !important;
+  right: auto !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
 
 /* reviews */
 

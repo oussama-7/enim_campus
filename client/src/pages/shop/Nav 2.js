@@ -72,9 +72,7 @@ const Navi = () => {
               <Navbar.Brand className="nav-item">Boutique</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <SearchBox />
-            </Navbar.Collapse>
+            
             </div>
               <div className="ms-auto">
                 

@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './shop.css';
-import Nav from "./Nav";
+import Nav from "./Nav 2";
 
 const reducer = (state, action) => {
   switch (action.type) {
