@@ -50,7 +50,7 @@ export const login=async(req,res,next)=>{
             const token = jwt.sign({id:user._id,isAdmin:user.isAdmin}, process.env.JWT,);
             const {password,isAdmin,isTeacher,...otherDetails}=user._doc;
 
-            res.cookie("access_token",token,).status(200).json({ details:{isAdmin,isTeacher,...otherDetails}});
+            res.cookie("access_token",token,).status(200).json({isAdmin,isTeacher, details:{isAdmin,isTeacher,...otherDetails}});
 
             
         }catch(err){
