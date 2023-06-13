@@ -30,7 +30,8 @@ const Event = () => {
                 <span className="eventDate">{event.date}</span> 
                 <div className="eventImages">
                   <div className="eventImgWrapper">
-                    {/* <img src={event.photos[0]} alt="" className="eventImg" />  */}
+
+                    <img src={event.photos} alt="" className="eventImg" /> 
                   </div>
                 </div>
                 <div className="eventDetails">
