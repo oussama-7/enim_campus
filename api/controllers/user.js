@@ -59,7 +59,8 @@ export const findUsers = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-  export const countUsers = async (req, res, next) => {
+};
+export const countUsers = async (req, res, next) => {
   try {
     const usersCount = await User.countDocuments();
    
