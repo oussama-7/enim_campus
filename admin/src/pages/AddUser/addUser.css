@@ -1,0 +1,11 @@
+.form-signup{
+width: 60%;
+    margin: 0.5rem auto;
+   
+}
+.form-container{
+    text-align: center;
+}
+input{
+    margin: 0.5rem;
+}

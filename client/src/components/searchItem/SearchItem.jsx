@@ -29,7 +29,7 @@ const SearchItem = ({item}) => {
         <div className="siDetailTexts">
    
           <Link to={`/events/${item._id}`}>
-          <button className="siCheckButton">voir detail</button>
+          <button className="siCheckButton">voire détail</button>
           </Link>
         </div>
       </div>

@@ -67,3 +67,15 @@ export const countByClub = async(req,res,next)=>{
         next(err);
     }
 };
+
+export const countEvents = async (req, res, next) => {
+    try {
+      const eventsCount = await Event.countDocuments();
+     
+      res.status(200).json(
+        {count: eventsCount },
+      );
+    } catch (err) {
+      next(err);
+    }
+  };

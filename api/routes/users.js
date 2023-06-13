@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+   countUsers,
   deleteUser,
   findUser,
   findUsers,
@@ -8,7 +9,7 @@ import {
 import expressAsyncHandler from 'express-async-handler';
 import { verifyAdmin, verifyToken, verifyUser } from '../utils/verifyToken.js';
 const router = express.Router();
-
+router.get("/countUsers",verifyAdmin,countUsers);
 router.get('/', verifyAdmin, findUsers);
 router.get('/', (req, res) => {
   res.send('hello, this is users endpoint?');

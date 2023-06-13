@@ -1,15 +1,18 @@
 import express from "express";
 
-import { createEvent,
+import { 
+    countEvents,
+    createEvent,
          updateEvent  ,
          deleteEvent,
          getEvent,
          getEvents,
          countByClub} from "../controllers/event.js";
+         import { verifyAdmin, verifyToken, verifyUser } from '../utils/verifyToken.js';       
 import Event from "../models/Event.js";
 
 const router =express.Router();
-
+router.get("/countEvents",verifyAdmin,countEvents)
 //create
 router.post("/", createEvent);
 
