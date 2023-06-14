@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router';
 import LoadingBox from './LoadingBox';
 import MessageBox from './MessageBox';
 import { Link } from 'react-router-dom';
-import Nav from './Nav';
+import Nav from './Nav2';
 import { Button, Col, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { getError } from '../../utils';

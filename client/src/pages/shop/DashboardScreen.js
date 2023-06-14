@@ -4,7 +4,7 @@ import Chart from 'react-google-charts';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Nav from './Nav';
+import Nav from './Nav2';
 import { getError } from '../../utils';
 import LoadingBox from './LoadingBox';
 import MessageBox from './MessageBox';
@@ -88,8 +88,8 @@ export default function DashboardScreen() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                  {summary.orders && summary.orders.numOrders 
-                      ? summary.orders.numOrders
+                  {summary.orders && summary.users[0]
+                      ? summary.orders[0].numOrders
                       : 0}
                   </Card.Title>
                   <Card.Text> Commandes</Card.Text>
@@ -101,12 +101,12 @@ export default function DashboardScreen() {
                 <Card.Body>
                   <Card.Title>
                   
-                  {summary.orders && summary.orders.totalSales 
-                      ? summary.orders.totalSales.toFixed(2)
+                  {summary.orders && summary.users[0]
+                      ? summary.orders[0].totalSales.toFixed(2)
                       : 0}{' '}
                     DH
                   </Card.Title>
-                  <Card.Text> Commandes</Card.Text>
+                  <Card.Text> Montant Total</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -120,7 +120,7 @@ export default function DashboardScreen() {
                 width="100%"
                 height="400px"
                 chartType="AreaChart"
-                loader={<div>Loading Chart...</div>}
+                loader={<div>Chargement...</div>}
                 data={[
                   ['Date', 'Ventes'],
                   ...summary.dailyOrders.map((x) => [x._id, x.sales]),
@@ -137,7 +137,7 @@ export default function DashboardScreen() {
                 width="100%"
                 height="400px"
                 chartType="PieChart"
-                loader={<div>Loading Chart...</div>}
+                loader={<div>Chargement...</div>}
                 data={[
                   ['Category', 'Products'],
                   ...summary.productCategories.map((x) => [x._id, x.count]),

@@ -35,16 +35,7 @@ export default function ShippingAdressScreen() {
         location: shippingAddress.location,
       },
     });
-    localStorage.setItem(
-      "shippingAddress",
-      JSON.stringify({
-        fullName,
-        address,
-        city,
-        postalCode,
-        location: shippingAddress.location,
-      })
-    );
+   
     navigate("/payment");
   };
   useEffect(() => {

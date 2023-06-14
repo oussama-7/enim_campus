@@ -1,11 +1,13 @@
 import React from "react";
+import alumni from "../../images/alumni.png"
+import astro from "../../images/astro.jpg"
 
 export default function Clubs() {
   return (
     <section id="press">
       <img
         className="press-image"
-        src="https://scontent.frba2-1.fna.fbcdn.net/v/t39.30808-6/326542020_882175296218690_4178783237840261957_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=HBs6aXaOAa4AX_LoKRH&_nc_ht=scontent.frba2-1.fna&oh=00_AfCfkElNMYmbIMU-SMk7FTjAJu7q7homdeEsRfjJab3cag&oe=647360EC"
+        src={alumni}
         alt="comite-culturel-logo"
       />
       <img
@@ -15,7 +17,7 @@ export default function Clubs() {
       />
       <img
         className="press-image"
-        src="https://scontent.frba2-2.fna.fbcdn.net/v/t39.30808-6/327256853_739061910977460_1552957625738798238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=dokN7DqiVxAAX9RQcga&_nc_ht=scontent.frba2-2.fna&oh=00_AfBJLpDT6r8eQ1uayUgykBfh8MmQ2emfHZ4vbRS1qF5YTg&oe=64734FC1"
+        src={astro}
         alt="comite-forum-logo"
       />
       <img

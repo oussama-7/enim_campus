@@ -38,15 +38,15 @@ const reducer = (state, action) => {
 
 const prices = [
   {
-    name: '$1 to $50',
+    name: '1 to 50 DH',
     value: '1-50',
   },
   {
-    name: '$51 to $200',
+    name: '51 to 200 DH',
     value: '51-200',
   },
   {
-    name: '$201 to $1000',
+    name: '201 to 1000 DH',
     value: '201-1000',
   },
 ];
@@ -151,7 +151,7 @@ export default function Searchscreen() {
                   className={'all' === category ? 'text-bold' : ''}
                   to={getFilterUrl({ category: 'all' })}
                 >
-                  Any
+                  Tout
                 </Link>
               </li>
               {categories.map((c) => (
@@ -174,7 +174,7 @@ export default function Searchscreen() {
                   className={'all' === price ? 'text-bold' : ''}
                   to={getFilterUrl({ price: 'all' })}
                 >
-                  Any
+                  Tous
                 </Link>
               </li>
               {prices.map((p) => (
@@ -190,7 +190,7 @@ export default function Searchscreen() {
             </ul>
           </div>
           <div>
-            <h3>Avg. Customer Review</h3>
+            <h3>Les avis clients</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>
@@ -198,7 +198,7 @@ export default function Searchscreen() {
                     to={getFilterUrl({ rating: r.rating })}
                     className={`${r.rating}` === `${rating}` ? 'text-bold' : ''}
                   >
-                    <Rating caption={' & up'} rating={r.rating}></Rating>
+                    <Rating caption={' & plus'} rating={r.rating}></Rating>
                   </Link>
                 </li>
               ))}
@@ -207,7 +207,7 @@ export default function Searchscreen() {
                   to={getFilterUrl({ rating: 'all' })}
                   className={rating === 'all' ? 'text-bold' : ''}
                 >
-                  <Rating caption={' & up'} rating={0}></Rating>
+                  <Rating caption={' & plus'} rating={0}></Rating>
                 </Link>
               </li>
             </ul>
@@ -242,7 +242,7 @@ export default function Searchscreen() {
                   </div>
                 </Col>
                 <Col className="text-end">
-                  Sort by{' '}
+                  Trier par{' '}
                   <select
                     value={order}
                     onChange={(e) => {
@@ -257,7 +257,7 @@ export default function Searchscreen() {
                 </Col>
               </Row>
               {products.length === 0 && (
-                <MessageBox>No Product Found</MessageBox>
+                <MessageBox>Pas de produits trouvés</MessageBox>
               )}
 
               <Row>

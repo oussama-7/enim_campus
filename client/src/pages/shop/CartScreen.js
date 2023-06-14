@@ -66,7 +66,7 @@ export default function CartScreen() {
               <Col className="border-0">
                 {cartItems.length === 0 ? (
                   <MessageBox>
-                    Cart is empty. <Link to="/homescreen">Go Shopping</Link>
+                    Panier vide. <Link to="/homescreen">Consulter nos produits </Link>
                   </MessageBox>
                 ) : (
                   <ListGroup>

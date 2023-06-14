@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Store } from './Store';
-import Nav from './Nav';
+import Nav from './Nav2';
 import './shop.css';
 
 

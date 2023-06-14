@@ -13,11 +13,11 @@ const Products = () => {
               <h3>Hoodies</h3>
             </div>
             <div className="card-body">
-              <h2 className="price-text">100$</h2>
+              
               <p>Confort ultime</p>
               <p>Style tendance</p>
               <p>Polyvalence inégalée</p>
-              <button type="button" className="btn btn-lg btn-block btn-dark">Acheter</button>
+              
             </div>
           </div>
         </div>
@@ -27,11 +27,11 @@ const Products = () => {
               <h3>Jacket</h3>
             </div>
             <div className="card-body">
-              <h2 className="price-text">100$</h2>
+              
               <p>Confort ultime</p>
               <p>Style tendance</p>
               <p>Polyvalence inégalée</p>
-              <button type="button" className="btn btn-lg btn-block btn-dark">Acheter</button>
+         
             </div>
           </div>
         </div>
@@ -41,11 +41,11 @@ const Products = () => {
               <h3>Cachcol</h3>
             </div>
             <div className="card-body">
-              <h2 className="price-text">100$</h2>
+             
               <p>Confort ultime</p>
               <p>Style tendance</p>
               <p>Polyvalence inégalée</p>
-              <button type="button" className="btn btn-lg btn-block btn-dark">Acheter</button>
+             
             </div>
           </div>
         </div>

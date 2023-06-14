@@ -12,7 +12,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 // import createError from '../error.js';
 import LoadingBox from './LoadingBox';
 import { AuthContext } from '../../context/AuthContext';
-import Nav from './Nav';
+import Nav from './Nav2';
 import './shop.css';
 
 
