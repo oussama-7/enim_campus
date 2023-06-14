@@ -68,8 +68,8 @@ const Navi = () => {
               <i className="fas fa-bars"></i>
             </Button> */}
             <div className="d-flex align-items-center flex-grow-1 pl-3">
-            <LinkContainer to="/">
-              <Navbar.Brand className="navbar-brand">Boutique</Navbar.Brand>
+            <LinkContainer to="/homescreen">
+              <Navbar.Brand className="nav-item">Boutique</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -77,11 +77,15 @@ const Navi = () => {
             </Navbar.Collapse>
             </div>
               <div className="ms-auto">
+                
               <Nav className="me-auto w-100% justify-content-end">
+              <LinkContainer to="/">
+              <Navbar.Brand className="nav-item">Enim Campus</Navbar.Brand>
+            </LinkContainer>
                 {user ? (
                   <>
-                    <Link to="/cart" className="nav-link">
-                      Panier
+                    <Link to="/cart" className="navbar-brand">
+                      Cart
                       {cart.cartItems.length > 0 && (
                         <Badge pill bg="danger">
                           {/* {cart.cartItems.length} */}
@@ -96,12 +100,12 @@ const Navi = () => {
                   </Link>
                 )}
                 {user !== null ? (
-                  <NavDropdown title={user.username} id="basic-nav-dropdown">
+                  <NavDropdown title={user.username} id="basic-nav-dropdown" >
                     <LinkContainer to="/profile">
-                      <NavDropdown.Item>Profile d'utilisateur</NavDropdown.Item>
+                      <NavDropdown.Item>User Profile</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/orderhistory">
-                      <NavDropdown.Item>Historique de commandes</NavDropdown.Item>
+                      <NavDropdown.Item>Order History</NavDropdown.Item>
                     </LinkContainer>
                     <NavDropdown.Divider />
                     <Link
@@ -117,7 +121,7 @@ const Navi = () => {
                     className="nav-link"
                     to={{
                       pathname: "/login",
-                      state: { from: location.pathname },
+                      state: { from: location.pathname || '/homescreen' },
                     }}
                   >
                     Sign In
@@ -126,13 +130,13 @@ const Navi = () => {
                 {user !== null && user.isAdmin && (
                   <NavDropdown title="Admin" id="admin-nav-dropdown">
                     <LinkContainer to="/admin/dashboard">
-                      <NavDropdown.Item>Tableau de bord</NavDropdown.Item>
+                      <NavDropdown.Item>Dashboard</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/admin/products">
-                      <NavDropdown.Item>Produits</NavDropdown.Item>
+                      <NavDropdown.Item>Products</NavDropdown.Item>
                     </LinkContainer>
                     <LinkContainer to="/admin/orders">
-                      <NavDropdown.Item>Commandes</NavDropdown.Item>
+                      <NavDropdown.Item>Orders</NavDropdown.Item>
                     </LinkContainer>
                     
                   </NavDropdown>

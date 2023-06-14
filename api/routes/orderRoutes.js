@@ -52,6 +52,7 @@ orderRouter.get(
           totalSales: { $sum: '$totalPrice' },
         },
       },
+      
     ]);
     
     const users = await User.aggregate([

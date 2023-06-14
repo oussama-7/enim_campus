@@ -88,11 +88,11 @@ export default function DashboardScreen() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                  {summary.orders && summary.users[0]
-                      ? summary.orders[0].numOrders
+                  {summary.orders && summary.orders.numOrders 
+                      ? summary.orders.numOrders
                       : 0}
                   </Card.Title>
-                  <Card.Text> Commandes</Card.Text>
+                  <Card.Text> Montant total</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -101,8 +101,8 @@ export default function DashboardScreen() {
                 <Card.Body>
                   <Card.Title>
                   
-                  {summary.orders && summary.users[0]
-                      ? summary.orders[0].totalSales.toFixed(2)
+                  {summary.orders && summary.orders.totalSales 
+                      ? summary.orders.totalSales.toFixed(2)
                       : 0}{' '}
                     DH
                   </Card.Title>

@@ -51,6 +51,7 @@ export const login=async(req,res,next)=>{
             const {password,isAdmin,isTeacher,...otherDetails}=user._doc;
 
             res.cookie("access_token",token,).status(200).json({isAdmin,isTeacher, details:{isAdmin,isTeacher,...otherDetails}});
+            res.cookie("access_token",token,).status(200).json({ isAdmin,isTeacher,details:{isAdmin,isTeacher,...otherDetails}});
 
             
         }catch(err){
